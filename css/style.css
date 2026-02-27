@@ -1,0 +1,18 @@
+.custom-table{
+    font-size: 0.85rem;
+}
+.custom-table th,
+.custom-table td{
+    white-space: nowrap;
+
+}
+.action-sticky{
+    position: sticky;
+    right: 0;
+    background-color: #fff;
+    z-index: 5;
+    border-left: 2px solid #dee2e6 !important;
+}
+.text-bar{
+    font-size: 0vw !important;
+}

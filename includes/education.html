@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- header -->
+     <section class="row-cols-12">
+    <div class="container mt-4">
+        <div class="container d-flex align-items-center">
+            <img src="/imgs/icon_data.png" class="img-fluid" alt="Icon">
+            <p class="h3 ps-1 fw-bold">Biodata CRD</p>
+            <div class="container d-md-flex justify-content-md-end text-center d-none">
+            <p class="h5"><b><span id="weekday"></span> <br><span id="date"></span> <br><span id="time"></span></b></p>
+            </div>
+        </div>
+    </div>
+        <!--  -->
+<!-- Nav tabs -->
+<ul class="nav nav-pills" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="messages-tab" data-bs-toggle="tab" data-bs-target="#messages" type="button" role="tab" aria-controls="messages" aria-selected="false">Messages</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Settings</button>
+  </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">Home</div>
+  <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">Personal</div>
+  <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">Education</div>
+  <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">Employment</div>
+</div>
+    <!-- buttons
+        <div class="container mt-5 mb-4 gap-3">
+            <a href="" class="btn btn-primary text-white text-decoration-none">Personal</a>
+            <a href="education.html" class="btn btn-outline-primary">Education</a>
+            <a href="" class="btn btn-outline-primary">Employment</a>
+            <a href="" class="btn btn-outline-primary">View All</a>
+            <div class="btn btn-primary float-md-end">Add Information</div>
+        </div> -->
+        <!-- table -->
+        <div class="container">
+        <table class="table table-hover table-responsive">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Jae</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <th scope="row">1</th>
+      <td>Jae</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <th scope="row">1</th>
+      <td>Jae</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <th scope="row">1</th>
+      <td>Jae</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<!--  -->
+
+    </section>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+
+</html>

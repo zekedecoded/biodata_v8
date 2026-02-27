@@ -1,0 +1,40 @@
+personal table
+personID (PK)
+lastName
+firstName
+middleName
+suffix
+mobile_no
+email
+street
+barangay
+city
+province
+date_of_birth
+gender
+father_lastName
+father_firstName
+father_middleName
+father_suffix
+language_known
+marital_stats
+religion
+hobbies
+
+education table
+educationID (PK)
+elementary - SFSES
+elem_year_graduated - 2018
+highschool - CNHS
+hs_year_graduated - 2020
+college - NEUST
+course - BSIT
+college_year_graduated - 2022
+other_skills - Programming, Web Development, Graphic Design
+
+employment table
+employmentID (PK)
+companyName
+position
+date_joined
+date_exit

@@ -1,0 +1,111 @@
+3NF
+person table
+personID (PK)
+lastname
+firstname
+middlename
+suffix
+mobile
+email
+addressID (FK)
+dob
+gender
+fatherID (FK) 
+marital_stats
+religion
+hobbies
+employmentID (FK)
+
+✅
+language table
+languageID
+personID (FK)
+LanguagesName
+
+✅
+address Table
+addressID (PK)
+streetName
+barangayID (FK)
+
+✅
+barangay table
+barangayID (PK)
+barangayName
+cityID (FK)
+
+✅
+city table
+cityID (PK)
+cityName
+provinceID (FK)
+
+province Table
+provinceID (PK)
+provinceName
+
+✅
+father table
+fatherID (PK)
+father_lastName
+father_firstName
+father_middleName
+father_suffix
+
+✅
+skills table
+skillsID
+personID (FK)
+skillsName
+
+education table
+educID
+personID (FK)
+collegeID (FK)
+schoolID (FK)
+
+education table (tentative)
+educID
+personID (FK)
+
+
+school table
+schoolID
+schoolLevel
+schoolName
+year_grad
+
+course table
+course_id
+course_name
+
+college table
+collegeID
+schoolName
+course_id
+year_grad
+
+✅
+employment table
+employmentID (PK)
+personID (FK)
+company
+position
+date_joined
+date_exit
+
+
+3 tables
+1 personal table 1 - addPerson()
+  - name to hobbies 
+2 education table 2- addEducation()
+  - elementary to other skills
+3 employment table
+  - company to date exit - 3 - addEmployment()
+
+
+3 functions
+1 - addPerson()
+2- addEducation()
+3 - addEmployment()
+
