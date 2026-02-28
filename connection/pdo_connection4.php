@@ -2,7 +2,7 @@
 class Database
 {
     private $host = 'localhost';
-    private $db = 'biodata_v6';
+    private $db = 'persondb';
     private $user = 'root';
     private $pass = 'gitzeke126';
     private $charset = 'utf8mb4';

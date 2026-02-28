@@ -1,7 +1,10 @@
 <?php
 include_once 'libraries.php';
 
-$data = $Record->getAll();
+$data = $Record->getAllPerson();
+$data1 = $Record->getAllEduc();
+$data2 = $Record->getAllEmployment();
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
     $Record->delete((int) $_POST['delete']);
     header('Location: index.php');
@@ -79,10 +82,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
                 <th scope="col">City</th>
                 <th scope="col">Province</th>
                 <th scope="col">Religion</th>
-                <th scope="col">Father's Name</th>
+                <th scope="col">Father's Last Name</th>
+                <th scope="col">Father's First Name</th>
+                <th scope="col">Father's Middle Name</th>
+                <th scope="col">Father's Suffix</th>
                 <th scope="col">Marital Status</th>
                 <th scope="col">Languages Known</th>
                 <th scope="col">Hobbies</th>
+                <th scope="col">Skills</th>
                 <th scope="col" class="action-sticky">Actions</th>
               </tr>
             </thead>
@@ -97,22 +104,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
                     <?= $number ?>
                   </td>
                   <td class="fw-bold">
-                    <?= strtoupper($row1['lastName']) ?>
+                    <?= strtoupper($row1['lastname']) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['firstName']) ?>
+                    <?= strtoupper($row1['firstname']) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['middleName']) ?>
+                    <?= strtoupper($row1['middlename']) ?>
                   </td>
                   <td>
                     <?= strtoupper($row1['suffix']) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['mobile_no']) ?>
+                    <?= strtoupper($row1['dob']) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1['gender']) ?>
                   </td>
                   <td class="text-lowercase text-primary">
                     <?= strtoupper($row1['email']) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1['mobile']) ?>
                   </td>
                   <td>
                     <?= strtoupper($row1['street']) ?>
@@ -127,33 +140,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
                     <?= strtoupper($row1['province']) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['date_of_birth']) ?>
+                    <?= strtoupper($row1['religion']) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['gender']) ?>
+                    <?= strtoupper($row1['father_lastName']) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['father_name']) ?>
+                    <?= strtoupper($row1['father_firstName']) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1['father_middleName']) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1['father_suffix']) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1['marital_status']) ?>
                   </td>
                   <td>
                     <?= strtoupper($row1['lang_known']) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['marital_stats']) ?>
+                    <?= strtoupper($row1['hobbiesName']) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['religion']) ?>
-                  </td>
-                  <td>
-                    <?= strtoupper($row1['hobbies']) ?>
+                    <?= strtoupper($row1['skills']) ?>
                   </td>
                   <td class="action-sticky">
                     <div class="btn-group btn-group-sm gap-1">
-                      <a href="./includes/view.php?id=<?= $row1['person_ID'] ?>"
-                        class="btn btn-success py-0 px-2">View</a>
+                      <a href="./includes/view.php?id=<?= $row1['personID'] ?>" class="btn btn-success py-0 px-2">View</a>
                       <a href="#" class="btn btn-primary py-0 px-2">Edit</a>
                       <form method="POST"><button type="submit" class="btn btn-danger py-0 px-2" name="delete"
-                          value="<?= $row1['person_ID'] ?>">Delete</button> </form>
+                          value="<?= $row1['personID'] ?>">Delete</button> </form>
                     </div>
                   </td>
                 </tr>
@@ -164,133 +182,112 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
         <!--  -->
       </div>
       <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab"><!-- table -->
-        <div class="container">
-          <table class="table table-hover table-responsive">
-            <thead>
+        <!-- education table -->
+        <div class="table-responsive border border-2 rounded shadow-sm">
+          <table class="table table-hover custom-table text-center mb-0">
+            <thead class="text-center">
               <tr>
-                <th scope="col">Education</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
                 <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Person Name</th>
+                <th scope="col">Company</th>
+                <th scope="col">Position</th>
+                <th scope="col">Date Joined</th>
+                <th scope="col">Date Left</th>
+                <th scope="col" class="action-sticky">Actions</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Jae</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <th scope="row">1</th>
-                <td>Jae</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <th scope="row">1</th>
-                <td>Jae</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <th scope="row">1</th>
-                <td>Jae</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-              </tr>
+              <?php
+              $number = 0;
+              foreach ($data1 as $row1) {
+                $number++;
+                ?>
+                <tr>
+                  <td>
+                    <?= $number ?>
+                  </td>
+                  <td class="fw-bold">
+                    <?= strtoupper($row1['full_name']) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1['acadLevel']) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1['schoolName']) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1['yr_grad']) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1['course_name']) ?>
+                  </td>
+                  <td class="action-sticky">
+                    <div class="btn-group btn-group-sm gap-1">
+                      <a href="./includes/view.php?id=<?= $row1['educationID'] ?>"
+                        class="btn btn-success py-0 px-2">View</a>
+                      <a href="#" class="btn btn-primary py-0 px-2">Edit</a>
+                      <form method="POST"><button type="submit" class="btn btn-danger py-0 px-2" name="delete"
+                          value="<?= $row1['educationID'] ?>">Delete</button> </form>
+                    </div>
+                  </td>
+                </tr>
+              <?php } ?>
             </tbody>
           </table>
         </div>
         <!--  -->
       </div>
       <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">
-        <!-- table -->
-        <div class="container">
-          <table class="table table-hover table-responsive">
-            <thead>
+        <!-- employment table -->
+        <div class="table-responsive border border-2 rounded shadow-sm">
+          <table class="table table-hover custom-table text-center mb-0">
+            <thead class="text-center">
               <tr>
-                <th scope="col">Employment</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
                 <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Person Name</th>
+                <th scope="col">Company</th>
+                <th scope="col">Position</th>
+                <th scope="col">Date Joined</th>
+                <th scope="col">Date Left</th>
+                <th scope="col" class="action-sticky">Actions</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Jae</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <th scope="row">1</th>
-                <td>Jae</td>
-                <td>Otto</td>z
-                <td>@mdo</td>
-                <th scope="row">1</th>
-                <td>Jae</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <th scope="row">1</th>
-                <td>Jae</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-              </tr>xampp
+              <?php
+              $number = 0;
+              foreach ($data2 as $row1) {
+                $number++;
+                ?>
+                <tr>
+                  <td>
+                    <?= $number ?>
+                  </td>
+                  <td class="fw-bold">
+                    <?= strtoupper($row1['person_Name']) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1['company']) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1['position']) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1['date_joined']) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1['date_exit']) ?>
+                  </td>
+                  <td class="action-sticky">
+                    <div class="btn-group btn-group-sm gap-1">
+                      <a href="./includes/view.php?id=<?= $row1['employmentID'] ?>"
+                        class="btn btn-success py-0 px-2">View</a>
+                      <a href="#" class="btn btn-primary py-0 px-2">Edit</a>
+                      <form method="POST"><button type="submit" class="btn btn-danger py-0 px-2" name="delete"
+                          value="<?= $row1['employmentID'] ?>">Delete</button> </form>
+                    </div>
+                  </td>
+                </tr>
+              <?php } ?>
             </tbody>
           </table>
         </div>
@@ -298,14 +295,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
       </div>
     </div>
     </div>
-    <!-- buttons
-        <div class="container mt-5 mb-4 gap-3">
-            <a href="" class="btn btn-primary text-white text-decoration-none">Personal</a>
-            <a href="education.html" class="btn btn-outline-primary">Education</a>
-            <a href="" class="btn btn-outline-primary">Employment</a>
-            <a href="" class="btn btn-outline-primary">View All</a>
-            <div class="btn btn-primary float-md-end">Add Information</div>
-        </div> -->
   </section>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"

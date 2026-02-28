@@ -23,7 +23,7 @@
         require 'Record.php';
         require_once './connection/pdo_connection4.php'; //API 
         $Record = new Classes\Record($db);
-        $data = $Record->getAll(); //fetch data
+        $data = $Record->getAllPerson(); //fetch data
         ?>
 
         <?php
