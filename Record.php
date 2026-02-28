@@ -31,14 +31,12 @@ class Record
 
     // education table
     public int $educationID;
-    public string $full_name;
     public string $acadLevel;
     public string $schoolName;
     public string $yr_grad;
     public string $course_name;
     // employment table
     public int $employmentID;
-    public string $person_Name;
     public string $company;
     public string $position;
     public string $date_joined;
@@ -84,24 +82,15 @@ class Record
         if (!empty($_POST)) {
             # code...
             // education table
-            $this->full_name = $_POST['full_name'];
-            $this->acadLevel = $_POST['acadLevel'];
             $this->schoolName = $_POST['schoolName'];
+            $this->acadLevel = $_POST['acadLevel'];
             $this->yr_grad = $_POST['yr_grad'];
             $this->course_name = $_POST['course_name'];
-            // employment table
-            $this->person_Name = $_POST['person_Name'];
-            $this->company = $_POST['company'];
-            $this->position = $_POST['position'];
-            $this->date_joined = $_POST['date_joined'];
-            $this->date_exit = $_POST['date_exit'];
-
         }
     }
     public function getPostEmployment()
     {
         if (!empty($_POST)) {
-            $this->person_Name = $_POST['person_Name'];
             $this->company = $_POST['company'];
             $this->position = $_POST['position'];
             $this->date_joined = $_POST['date_joined'];
@@ -146,9 +135,8 @@ class Record
     {
         if (isset($_POST['AddEducation'])) {
             $this->getPostEducation();
-            $stmt = $this->con->prepare("INSERT INTO education(full_name,acadLevel,schoolName,yr_grad,course_name)VALUES (?,?,?,?,?)");
+            $stmt = $this->con->prepare("INSERT INTO education(acadLevel,schoolName,yr_grad,course_name)VALUES (?,?,?,?)");
             $stmt->execute([
-                $this->full_name,
                 $this->acadLevel,
                 $this->schoolName,
                 $this->yr_grad,
@@ -158,21 +146,64 @@ class Record
             header("Location: ../index.php");
         }
     }
-
-
-    public function delete($person_ID)
+    public function AddEmployment()
     {
-        $stmt = $this->con->prepare("DELETE FROM informations WHERE person_ID = ?");
-        $stmt->execute([$person_ID]);
+        if (isset($_POST['AddEmployment'])) {
+            $this->getPostEmployment();
+            $stmt = $this->con->prepare("INSERT INTO employment(company,position,date_joined,date_exit)VALUES (?,?,?,?)");
+            $stmt->execute([
+                $this->company,
+                $this->position,
+                $this->date_joined,
+                $this->date_exit,
+            ]);
+            $this->responseSQL($stmt);
+            header("Location: ../index.php");
+        }
+    }
+
+
+    public function deletePerson($personID)
+    {
+        $stmt = $this->con->prepare("DELETE FROM person WHERE personID = ?");
+        $stmt->execute([$personID]);
+        return $stmt->rowCount() > 0;
+    }
+    public function deleteEducation($educationID)
+    {
+        $stmt = $this->con->prepare("DELETE FROM education WHERE educationID = ?");
+        $stmt->execute([$educationID]);
+        return $stmt->rowCount() > 0;
+    }
+    public function deleteEmployment($employmentID)
+    {
+        $stmt = $this->con->prepare("DELETE FROM informations WHERE employmentID = ?");
+        $stmt->execute([$employmentID]);
         return $stmt->rowCount() > 0;
     }
 
-    public function view($person_ID)
+    public function viewPerson($personID)
     {
-        if (!$person_ID)
+        if (!$personID)
             return 0;
         $stmt = $this->con->prepare("SELECT * FROM person WHERE personID = ?");
-        $stmt->execute([$person_ID]);
+        $stmt->execute([$personID]);
+        return $stmt->rowCount() ? $stmt->fetch() : 0;
+    }
+    public function viewEducation($educationID)
+    {
+        if (!$educationID)
+            return 0;
+        $stmt = $this->con->prepare("SELECT * FROM education WHERE educationID = ?");
+        $stmt->execute([$educationID]);
+        return $stmt->rowCount() ? $stmt->fetch() : 0;
+    }
+    public function viewEmployment($employmentID)
+    {
+        if (!$employmentID)
+            return 0;
+        $stmt = $this->con->prepare("SELECT * FROM employment WHERE employmentID = ?");
+        $stmt->execute([$employmentID]);
         return $stmt->rowCount() ? $stmt->fetch() : 0;
     }
     public function getAllPerson()

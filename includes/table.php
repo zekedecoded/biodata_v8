@@ -6,7 +6,17 @@ $data1 = $Record->getAllEduc();
 $data2 = $Record->getAllEmployment();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
-    $Record->delete((int) $_POST['delete']);
+    $Record->deletePerson((int) $_POST['delete']);
+    header('Location: index.php');
+  }
+}
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
+    $Record->deleteEducation((int) $_POST['delete']);
+    header('Location: index.php');
+  }
+}
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
+    $Record->deleteEmployment((int) $_POST['delete']);
     header('Location: index.php');
   }
 }
@@ -52,11 +62,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
             data-bs-target="#messages" type="button" role="tab" aria-controls="messages"
             aria-selected="false">Employment</button>
         </li>
-        <li class="nav ms-auto" role="presentation">
-          <a href="./includes/add.php" class="btn btn-primary btn-sm">
-            <img src="./imgs/plus.png" alt="Add" class="img-fluid" width="32px">
-            Add Information
-          </a>
+        <li class="nav ms-auto d-none d-md-block" role="presentation">
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle d-flex align-items-center" type="button"
+              id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="./imgs/plus.png" alt="Add" class="img-fluid" width="32px">
+              Add Information
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="./includes/addPerson.php">Person</a></li>
+              <li><a class="dropdown-item" href="./includes/addEducation.php">Education</a></li>
+              <li><a class="dropdown-item" href="./includes/addEmployment.php">Employment</a></li>
+            </ul>
+          </div>
         </li>
       </ul>
     </div>
@@ -168,7 +186,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
                   </td>
                   <td class="action-sticky">
                     <div class="btn-group btn-group-sm gap-1">
-                      <a href="./includes/view.php?id=<?= $row1['personID'] ?>" class="btn btn-success py-0 px-2">View</a>
+                      <a href="./includes/viewPerson.php?id=<?= $row1['personID'] ?>"
+                        class="btn btn-success py-0 px-2">View</a>
                       <a href="#" class="btn btn-primary py-0 px-2">Edit</a>
                       <form method="POST"><button type="submit" class="btn btn-danger py-0 px-2" name="delete"
                           value="<?= $row1['personID'] ?>">Delete</button> </form>
@@ -188,11 +207,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
             <thead class="text-center">
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Person Name</th>
-                <th scope="col">Company</th>
-                <th scope="col">Position</th>
-                <th scope="col">Date Joined</th>
-                <th scope="col">Date Left</th>
+                <th scope="col">School Name</th>
+                <th scope="col">Academic Level</th>
+                <th scope="col">Course</th>
+                <th scope="col">Year Graduated</th>
                 <th scope="col" class="action-sticky">Actions</th>
               </tr>
             </thead>
@@ -206,24 +224,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
                   <td>
                     <?= $number ?>
                   </td>
-                  <td class="fw-bold">
-                    <?= strtoupper($row1['full_name']) ?>
+                  <td>
+                    <?= strtoupper($row1['schoolName']) ?>
                   </td>
                   <td>
                     <?= strtoupper($row1['acadLevel']) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['schoolName']) ?>
+                    <?= strtoupper($row1['course_name']) ?>
                   </td>
                   <td>
                     <?= strtoupper($row1['yr_grad']) ?>
                   </td>
-                  <td>
-                    <?= strtoupper($row1['course_name']) ?>
-                  </td>
                   <td class="action-sticky">
                     <div class="btn-group btn-group-sm gap-1">
-                      <a href="./includes/view.php?id=<?= $row1['educationID'] ?>"
+                      <a href="./includes/viewEducation.php?id=<?= $row1['educationID'] ?>"
                         class="btn btn-success py-0 px-2">View</a>
                       <a href="#" class="btn btn-primary py-0 px-2">Edit</a>
                       <form method="POST"><button type="submit" class="btn btn-danger py-0 px-2" name="delete"
@@ -244,7 +259,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
             <thead class="text-center">
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Person Name</th>
                 <th scope="col">Company</th>
                 <th scope="col">Position</th>
                 <th scope="col">Date Joined</th>
@@ -261,9 +275,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
                 <tr>
                   <td>
                     <?= $number ?>
-                  </td>
-                  <td class="fw-bold">
-                    <?= strtoupper($row1['person_Name']) ?>
                   </td>
                   <td>
                     <?= strtoupper($row1['company']) ?>
