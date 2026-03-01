@@ -62,6 +62,25 @@ $Record->AddPerson();
               Please provide a valid date of birth.
             </div>
           </div>
+          <!-- gender new -->
+          <div class="position-relative mb-2">
+            <label>Gender</label>
+            <div class="row row-cols-md-auto mt-2">
+              <div class="col">
+                <input type="radio" class="form-check-input" id="male" name="gender" value="Male" required>
+                <label class="form-check-label" for="male">Male</label>
+              </div>
+              <div class="col">
+                <input type="radio" class="form-check-input" id="female" name="gender" value="Female" required>
+                <label class="form-check-label" for="female">Female</label>
+              </div>
+              <div class="col">
+                <input type="radio" class="form-check-input" id="other" name="gender" value="Other" required>
+                <label class="form-check-label" for="other">Other</label>
+              </div>
+            </div>
+          </div>
+          <!--  -->
           <div class="position-relative mb-2">
             <label for="validationTooltip12" class="form-label">Religion</label>
             <input type="text" class="form-control" id="validationTooltip12" required name="religion">
@@ -76,45 +95,26 @@ $Record->AddPerson();
               Please provide a valid marital status.
             </div>
           </div>
-          <div class="position-relative">
+          <div class="position-relative mb-2">
             <label for="validationTooltip18" class="form-label">Language Known</label>
             <input type="text" class="form-control" id="validationTooltip18" required name="lang_known">
             <div class="invalid-feedback">
               Please provide a valid language known.
             </div>
           </div>
-          <div class="position-relative">
+          <div class="position-relative mb-2">
             <label for="validationTooltip19" class="form-label">Hobbies</label>
             <input type="text" class="form-control" id="validationTooltip19" required name="hobbiesName">
             <div class="invalid-feedback">
               Please provide a valid hobbies name.
             </div>
           </div>
-          <div class="position-relative">
+          <div class="position-relative mb-2">
             <label for="validationTooltip20" class="form-label">Skills</label>
             <input type="text" class="form-control" id="validationTooltip20" required name="skills">
             <div class="invalid-feedback">
               Please provide a valid skills.
             </div>
-            <!-- gender new -->
-            <div class="col-12 position-relative">
-              <label>Gender</label>
-              <div class="row row-cols-md-auto mt-2">
-                <div class="col">
-                  <input type="radio" class="form-check-input" id="male" name="gender" value="Male" required>
-                  <label class="form-check-label" for="male">Male</label>
-                </div>
-                <div class="col">
-                  <input type="radio" class="form-check-input" id="female" name="gender" value="Female" required>
-                  <label class="form-check-label" for="female">Female</label>
-                </div>
-                <div class="col">
-                  <input type="radio" class="form-check-input" id="other" name="gender" value="Other" required>
-                  <label class="form-check-label" for="other">Other</label>
-                </div>
-              </div>
-            </div>
-            <!--  -->
             <div class="col-12 position-relative">
               <label for="validationTooltip13" class="form-label">Father's First Name</label>
               <input type="text" class="form-control" id="validationTooltip13" required name="father_firstName">
@@ -205,7 +205,7 @@ $Record->AddPerson();
       </div>
       </div>
       <div class="col-12 mt-3">
-        <button class="btn btn-primary" type="submit" name="AddPerson">Submit form</button>
+        <button class="btn btn-primary float-end mb-3" type="submit" name="AddPerson">Submit form</button>
       </div>
     </form>
   </section>

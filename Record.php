@@ -177,7 +177,7 @@ class Record
     }
     public function deleteEmployment($employmentID)
     {
-        $stmt = $this->con->prepare("DELETE FROM informations WHERE employmentID = ?");
+        $stmt = $this->con->prepare("DELETE FROM employment WHERE employmentID = ?");
         $stmt->execute([$employmentID]);
         return $stmt->rowCount() > 0;
     }

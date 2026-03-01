@@ -83,6 +83,28 @@ if (isset($_GET['id'])) {
                             Please provide a valid date of birth.
                         </div>
                     </div>
+                    <!-- gender new -->
+                    <div class="col-12 position-relative mb-2">
+                        <label>Gender</label>
+                        <div class="row row-cols-md-auto mt-2">
+                            <div class="col">
+                                <input type="radio" class="form-check-input" id="male" name="gender" value="Male"
+                                    <?= ($row1['gender'] == 'Male') ? 'checked' : '' ?> disabled><label
+                                    class="form-check-label" for="male">Male</label>
+                            </div>
+                            <div class="col">
+                                <input type="radio" class="form-check-input" id="female" name="gender" value="Female"
+                                    <?= ($row1['gender'] == 'Female') ? 'checked' : '' ?> disabled>
+                                <label class="form-check-label" for="female">Female</label>
+                            </div>
+                            <div class="col">
+                                <input type="radio" class="form-check-input" id="other" name="gender" value="Male"
+                                    <?= ($row1['gender'] == 'Other') ? 'checked' : '' ?> disabled>
+                                <label class="form-check-label" for="other">Other</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
                     <div class="position-relative mb-2">
                         <label for="validationTooltip12" class="form-label">Religion</label>
                         <input type="text" class="form-control" id="validationTooltip12" disabled name="religion"
@@ -122,28 +144,7 @@ if (isset($_GET['id'])) {
                         <div class="invalid-feedback">
                             Please provide a valid skills.
                         </div>
-                        <!-- gender new -->
-                        <div class="col-12 position-relative mb-2">
-                            <label>Gender</label>
-                            <div class="row row-cols-md-auto mt-2">
-                                <div class="col">
-                                    <input type="radio" class="form-check-input" id="male" name="gender" value="Male"
-                                        <?= ($row1['gender'] == 'Male') ? 'checked' : '' ?> disabled><label
-                                        class="form-check-label" for="male">Male</label>
-                                </div>
-                                <div class="col">
-                                    <input type="radio" class="form-check-input" id="female" name="gender"
-                                        value="Female" <?= ($row1['gender'] == 'Female') ? 'checked' : '' ?> disabled>
-                                    <label class="form-check-label" for="female">Female</label>
-                                </div>
-                                <div class="col">
-                                    <input type="radio" class="form-check-input" id="other" name="gender" value="Male"
-                                        <?= ($row1['gender'] == 'Other') ? 'checked' : '' ?> disabled>
-                                    <label class="form-check-label" for="other">Other</label>
-                                </div>
-                            </div>
-                        </div>
-                        <!--  -->
+
                         <div class="col-12 position-relative mb-2">
                             <label for="validationTooltip13" class="form-label">Father's First Name</label>
                             <input type="text" class="form-control" id="validationTooltip13" disabled
@@ -184,7 +185,7 @@ if (isset($_GET['id'])) {
                             <div class="input-group has-validation">
                                 <input type="email" class="form-control" id="validationTooltipEmail"
                                     aria-describedby="validationTooltipEmailPrepend" disabled
-                                    value="<?= strtoupper($row1['email']) ?>" name="email">
+                                    value="<?= $row1['email'] ?>" name="email">
                                 <div class="invalid-feedback">
                                     Please provide a valid email address.
                                 </div>

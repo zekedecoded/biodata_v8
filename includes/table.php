@@ -1,10 +1,4 @@
 <?php
-include_once 'libraries.php';
-
-$data = $Record->getAllPerson();
-$data1 = $Record->getAllEduc();
-$data2 = $Record->getAllEmployment();
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
     $Record->deletePerson((int) $_POST['delete']);
     header('Location: index.php');
@@ -48,21 +42,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
     <!--  -->
     <div class="container mt-5 mb-4 gap-3">
       <!-- Nav tabs -->
-      <ul class="nav nav-pills gap-1" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
+      <div class="nav nav-pills gap-1" id="myTab" role="tablist">
+        <div class="nav-item" role="presentation">
           <button class="nav-link border border-primary active" id="home-tab" data-bs-toggle="tab"
             data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Personal</button>
-        </li>
-        <li class="nav-item" role="presentation">
+        </div>
+        <div class="nav-item" role="presentation">
           <button class="nav-link border border-primary" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
             type="button" role="tab" aria-controls="profile" aria-selected="false">Education</button>
-        </li>
-        <li class="nav-item" role="presentation">
+        </div>
+        <div class="nav-item" role="presentation">
           <button class="nav-link border border-primary" id="messages-tab" data-bs-toggle="tab"
             data-bs-target="#messages" type="button" role="tab" aria-controls="messages"
             aria-selected="false">Employment</button>
-        </li>
-        <li class="nav ms-auto d-none d-md-block" role="presentation">
+        </div>
+        <div class="nav ms-auto d-none d-md-block" role="presentation">
           <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle d-flex align-items-center" type="button"
               id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -75,8 +69,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
               <li><a class="dropdown-item" href="./includes/addEmployment.php">Employment</a></li>
             </ul>
           </div>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
     <!-- Tab panes -->
     <div class="tab-content">
@@ -290,7 +284,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
                   </td>
                   <td class="action-sticky">
                     <div class="btn-group btn-group-sm gap-1">
-                      <a href="./includes/view.php?id=<?= $row1['employmentID'] ?>"
+                      <a href="./includes/viewEmployment.php?id=<?= $row1['employmentID'] ?>"
                         class="btn btn-success py-0 px-2">View</a>
                       <a href="#" class="btn btn-primary py-0 px-2">Edit</a>
                       <form method="POST"><button type="submit" class="btn btn-danger py-0 px-2" name="delete"

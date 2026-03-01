@@ -24,15 +24,14 @@
         require_once './connection/pdo_connection4.php'; //API 
         $Record = new Classes\Record($db);
         $data = $Record->getAllPerson(); //fetch data
+        $data1 = $Record->getAllEduc();
+        $data2 = $Record->getAllEmployment();
         ?>
 
         <?php
         include_once 'libraries.php';
 
-        // contents
         include './includes/table.php';
-        // include './includes/view_table.php';
-        // include './includes/add.php';
         ?>
 
     </body>
