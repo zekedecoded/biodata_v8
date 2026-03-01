@@ -1,8 +1,6 @@
 <?php
 include '../Record.php';
 $Record = new Classes\Record($db);
-$Record->AddPerson();
-$Record->AddEducation();
 $Record->AddEmployment();
 ?>
 <!DOCTYPE html>
@@ -22,8 +20,8 @@ $Record->AddEmployment();
     <!-- Employment forms -->
     <form method="POST" class="g-3 needs-validation border border-1 m-5 p-5" novalidate>
       <div class="container">
-        <div class="display-4 mt-3 text-start fw-bold mb-5 d-none d-md-block">Employment Information</div>
-        <div class="display-6 mt-3 text-center fw-bold mb-5 d-md-none d-block">Employment Information</div>
+        <div class="display-4 mt-3 text-start fw-bold mb-1 d-none d-md-block">Employment Information</div>
+        <div class="display-6 mt-3 text-center fw-bold mb-1 d-md-none d-block">Employment Information</div>
       </div>
       <hr>
       <div class="row">
@@ -52,7 +50,7 @@ $Record->AddEmployment();
           </div>
           <div class="col-12 position-relative mb-2">
             <label for="validationTooltip04" class="form-label">Date Exit</label>
-            <input type="date" class="form-control" id="validationTooltip04" name="date_exit">
+            <input type="date" class="form-control" id="validationTooltip04" name="date_exit" required>
             <div class="invalid-feedback">
               Please provide a valid exit date.
             </div>
@@ -61,8 +59,13 @@ $Record->AddEmployment();
       </div>
       </div>
       </div>
-      <div class="col-12 mt-3">
-        <button class="btn btn-primary" type="submit" name="AddEmployment">Submit form</button>
+      <div class="col-12 mt-4">
+        <div class="row d-flex justify-content-center g-0 gap-0 gap-md-5">
+          <button class="col-12 col-md-5 btn btn-outline-danger mb-2 mt-2" type="reset">Clear
+            Form</button>
+          <button class="col-12 col-md-5 btn btn-primary mb-2 mt-2" type="submit" name="AddEmployment">Submit
+            form</button>
+        </div>
       </div>
     </form>
   </section>

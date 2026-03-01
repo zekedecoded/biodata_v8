@@ -28,8 +28,8 @@ if (isset($_GET['id'])) {
             <a href="../index.php"><img src="../imgs/return.png" class="img-fluid pe-2" width="24" alt="back"></a>
 
             <div class="container">
-                <div class="display-4 mt-3 text-start fw-bold mb-5 d-none d-md-block">Educational Information</div>
-                <div class="display-6 mt-3 text-center fw-bold mb-5 d-md-none d-block">Educational Information</div>
+                <div class="display-4 mt-3 text-start fw-bold mb-3 d-none d-md-block">Educational Information</div>
+                <div class="display-6 mt-3 text-center fw-bold mb-1 d-md-none d-block">Educational Information</div>
             </div>
             <hr>
             <div class="row">
@@ -59,7 +59,7 @@ if (isset($_GET['id'])) {
             </div>
             </div>
             </div>
-            <div class="row mt-3 g-0 gap-5 justify-content-center">
+            <div class="row mt-3 g-0 gap-md-5 gap-2 justify-content-center">
                 <div class="col-12 col-md-5 btn btn-outline-primary">Edit Profile</div>
                 <div class="col-12 col-md-5 btn btn-outline-danger">Delete Profile</div>
             </div>

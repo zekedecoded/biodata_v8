@@ -1,7 +1,6 @@
 <?php
 include '../Record.php';
 $Record = new Classes\Record($db);
-$Record->AddPerson();
 $Record->AddEducation();
 ?>
 <!DOCTYPE html>
@@ -44,7 +43,7 @@ $Record->AddEducation();
           </div>
           <div class="position-relative mb-2">
             <label for="validationTooltip03" class="form-label">Course</label>
-            <input type="text" class="form-control" id="validationTooltip03" required name="course_name">
+            <input type="text" class="form-control" id="validationTooltip03" name="course_name">
             <div class="invalid-feedback">
               Please provide a valid course.
             </div>
@@ -60,8 +59,9 @@ $Record->AddEducation();
       </div>
       </div>
       </div>
-      <div class="col-12 mt-3">
-        <button class="btn btn-primary" type="submit" name="AddEducation">Submit form</button>
+      <div class="col-12 mt-3 d-flex justify-content-center justify-content-md-end">
+        <button class="btn btn-primary" onclick="alert('Form Submitted');" type="submit" name="AddEducation">Submit
+          form</button>
       </div>
     </form>
   </section>

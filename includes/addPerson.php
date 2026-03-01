@@ -18,10 +18,10 @@ $Record->AddPerson();
 <body>
   <section class="container">
     <!-- Personal forms -->
-    <form method="POST" class="g-3 needs-validation border border-1 m-5 p-5" novalidate>
+    <form method="POST" class="g-3 needs-validation border border-1 m-2 ps-5 pe-4" novalidate>
       <div class="container">
-        <div class="display-4 mt-3 text-start fw-bold mb-5 d-none d-md-block">Personal Information</div>
-        <div class="display-6 mt-3 text-center fw-bold mb-5 d-md-none d-block">Personal Information</div>
+        <div class="display-4 mt-3 text-start fw-bold mb-1 d-none d-md-block">Personal Information</div>
+        <div class="display-6 mt-3 text-center fw-bold mb-1 d-md-none d-block">Personal Information</div>
       </div>
       <hr>
       <div class="row">
@@ -205,8 +205,11 @@ $Record->AddPerson();
       </div>
       </div>
       <div class="col-12 mt-3">
-        <button class="btn btn-primary float-end mb-3" type="submit" name="AddPerson">Submit form</button>
-      </div>
+        <div class="row d-flex justify-content-center justify-content-md-between g-0 gap-1">
+          <button class="col col-md-5 btn btn-outline-danger mb-3 mt-2" type="reset">Clear
+            Form</button>
+          <button class="col col-md-5 btn btn-primary mb-3 mt-2" type="submit" name="AddPerson">Submit form</button>
+        </div>
     </form>
   </section>
 </body>

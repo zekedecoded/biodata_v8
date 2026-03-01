@@ -7,6 +7,12 @@ if (isset($_GET['id'])) {
 } else {
   //redirect
 }
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
+    $Record->deleteEmployment((int) $_POST['delete']);
+    header('Location: index.php');
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,8 +32,8 @@ if (isset($_GET['id'])) {
     <form method="POST" class="g-3 needs-validation border border-1 m-5 p-5" novalidate>
       <a href="../index.php"><img src="../imgs/return.png" class="img-fluid pe-2" width="24" alt="back"></a>
       <div class="container">
-        <div class="display-4 mt-3 text-start fw-bold mb-5 d-none d-md-block">Employment Information</div>
-        <div class="display-6 mt-3 text-center fw-bold mb-5 d-md-none d-block">Employment Information</div>
+        <div class="display-4 mt-3 text-start fw-bold mb-3 d-none d-md-block">Employment Information</div>
+        <div class="display-6 mt-3 text-center fw-bold mb-3 d-md-none d-block">Employment Information</div>
       </div>
       <hr>
       <div class="row">
@@ -48,7 +54,7 @@ if (isset($_GET['id'])) {
             <label for="validationTooltip03" class="form-label">Date Joined</label>
             <input type="date" class="form-control" id="validationTooltip03" disabled
               value="<?= strtoupper($row1['date_joined']) ?>" name=" date_joined">
-            s
+
           </div>
           <div class="col-12 position-relative mb-2">
             <label for="validationTooltip04" class="form-label">Date Exit</label>
@@ -59,9 +65,11 @@ if (isset($_GET['id'])) {
       </div>
       </div>
       </div>
-      <div class="row mt-3 g-0 gap-5 justify-content-center">
+      <div class="row mt-3 g-0 gap-md-5 gap-2 justify-content-center">
         <div class="col-12 col-md-5 btn btn-outline-primary">Edit Profile</div>
-        <div class="col-12 col-md-5 btn btn-outline-danger">Delete Profile</div>
+        <!-- <div class="col-12 col-md-5 btn btn-outline-danger">Delete Profile</div> -->
+        <form method="POST"><button type="submit" class="col-12 col-md-5 btn btn-outline-danger" name="delete"
+            value="<?= $row1['employmentID'] ?>">Delete</button> </form>
       </div>
     </form>
   </section>

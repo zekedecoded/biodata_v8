@@ -29,6 +29,27 @@
         ?>
 
         <?php
+        // Delete Function
+        // person table
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
+                $Record->deletePerson((int) $_POST['delete']);
+                header('Location: index.php');
+            }
+        }
+        // education table
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
+                $Record->deleteEducation((int) $_POST['delete']);
+                header('Location: index.php');
+            }
+        }
+        // employment table
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
+                $Record->deleteEmployment((int) $_POST['delete']);
+                header('Location: index.php');
+            }
+        }
+        ?>
+        <?php
         include_once 'libraries.php';
 
         include './includes/table.php';

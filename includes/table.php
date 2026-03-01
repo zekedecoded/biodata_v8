@@ -1,20 +1,3 @@
-<?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
-    $Record->deletePerson((int) $_POST['delete']);
-    header('Location: index.php');
-  }
-}
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
-    $Record->deleteEducation((int) $_POST['delete']);
-    header('Location: index.php');
-  }
-}
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
-    $Record->deleteEmployment((int) $_POST['delete']);
-    header('Location: index.php');
-  }
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
   <title>Biodata CRD</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
@@ -42,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
     <!--  -->
     <div class="container mt-5 mb-4 gap-3">
       <!-- Nav tabs -->
-      <div class="nav nav-pills gap-1" id="myTab" role="tablist">
+      <div class="nav nav-pills gap-1 justify-content-center flex-nowrap" id="myTab" role="tablist">
         <div class="nav-item" role="presentation">
           <button class="nav-link border border-primary active" id="home-tab" data-bs-toggle="tab"
             data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Personal</button>
@@ -56,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
             data-bs-target="#messages" type="button" role="tab" aria-controls="messages"
             aria-selected="false">Employment</button>
         </div>
-        <div class="nav ms-auto d-none d-md-block" role="presentation">
+        <div class="nav d-none d-md-block ms-auto" role="presentation">
           <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle d-flex align-items-center" type="button"
               id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -71,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
           </div>
         </div>
       </div>
+      <!--  -->
     </div>
     <!-- Tab panes -->
     <div class="tab-content">
@@ -302,6 +286,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
     </div>
   </section>
 </body>
+<div class="dropdown d-md-none position-fixed bottom-0 end-0 m-4 dropdown-container z-3">
+  <button class="btn btn-primary rounded-circle fabq d-flex align-items-center justify-content-center p-0" type="button"
+    id="fabMobile" data-bs-toggle="dropdown" aria-expanded="false">
+    <img src="./imgs/add.png" alt="">
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="fabMobile">
+    <li><a class="dropdown-item" href="./includes/addPerson.php">Add Person</a></li>
+    <li><a class="dropdown-item" href="./includes/addEducation.php">Add Education</a></li>
+    <li><a class="dropdown-item" href="./includes/addEmployment.php">Add Employment</a></li>
+  </ul>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 <script src="js/script.js"></script>
