@@ -182,13 +182,78 @@ class Record
         return $stmt->rowCount() > 0;
     }
 
-    public function viewPerson($personID)
+    //edit function
+    public function editPerson($personID)
     {
-        if (!$personID)
-            return 0;
-        $stmt = $this->con->prepare("SELECT * FROM person WHERE personID = ?");
-        $stmt->execute([$personID]);
-        return $stmt->rowCount() ? $stmt->fetch() : 0;
+        $this->getPostPerson();
+        if (!empty($_POST)) {
+            $stmt = $this->con->prepare("UPDATE person SET firstname = ?, lastname = ?, middlename = ?, suffix = ?, mobile = ?, email = ?, dob = ?, gender = ?, marital_status = ?, father_lastName = ?, father_firstName = ?, father_middleName = ?, father_suffix = ?, religion = ?, lang_known = ?, hobbiesName = ?, street = ?, barangay = ?, city = ?, province = ?, skills = ? WHERE personID = ?");
+            $stmt->execute([
+                $this->firstname,
+                $this->lastname,
+                $this->middlename,
+                $this->suffix,
+                $this->mobile,
+                $this->email,
+                $this->dob,
+                $this->gender,
+                $this->marital_status,
+                $this->father_lastName,
+                $this->father_firstName,
+                $this->father_middleName,
+                $this->father_suffix,
+                $this->religion,
+                $this->lang_known,
+                $this->hobbiesName,
+                $this->street,
+                $this->barangay,
+                $this->city,
+                $this->province,
+                $this->skills,
+                $personID
+            ]);
+            $this->responseSQL(($stmt));
+            // header('Location: ../index.php ');
+            header("Location: ../includes/editPerson.php?id=$personID");
+
+        }
+    }
+    public function editEducation($educationID)
+    {
+        $this->getPostEducation();
+        if (!empty($_POST)) {
+            $stmt = $this->con->prepare("UPDATE education SET acadLevel = ?, schoolName = ?, yr_grad = ?, course_name = ? WHERE educationID = ?");
+            $stmt->execute([
+                $this->acadLevel,
+                $this->schoolName,
+                $this->yr_grad,
+                $this->course_name,
+                $educationID
+            ]);
+            $this->responseSQL(($stmt));
+            // header('Location: ../index.php ');
+            header("Location: ../includes/editEducation.php?id=$educationID");
+
+        }
+    }
+    public function editEmployment($employmentID)
+    {
+        $this->getPostEmployment();
+        if (!empty($_POST)) {
+            $stmt = $this->con->prepare("UPDATE employment SET company = ?, position = ?, date_joined = ?, date_exit = ? WHERE employmentID = ?");
+            $stmt->execute([
+                $this->company,
+                $this->position,
+                $this->date_joined,
+                $this->date_exit,
+                $employmentID
+            ]);
+            $this->responseSQL(($stmt));
+            // header('Location: ../index.php ');
+            header("Location: ../includes/editEmployment.php?id=$employmentID");
+            // header('Location: view.php?id=' . $educationID . '');
+
+        }
     }
     public function viewEducation($educationID)
     {
@@ -206,6 +271,16 @@ class Record
         $stmt->execute([$employmentID]);
         return $stmt->rowCount() ? $stmt->fetch() : 0;
     }
+
+    public function viewPerson($personID)
+    {
+        if (!$personID)
+            return 0;
+        $stmt = $this->con->prepare("SELECT * FROM person WHERE personID = ?");
+        $stmt->execute([$personID]);
+        return $stmt->rowCount() ? $stmt->fetch() : 0;
+    }
+
     public function getAllPerson()
     {
         $stmt = $this->con->prepare("SELECT * FROM person");

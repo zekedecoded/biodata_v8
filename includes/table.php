@@ -16,7 +16,7 @@
     <div class="container">
       <div class="container d-flex align-items-center">
         <img src="./imgs/icon_data.png" class="img-fluid" alt="Icon">
-        <p class="h3 ps-1 fw-bold">Welcome to Biodata <br>CRD</p>
+        <p class="h3 ps-1 fw-bold">Welcome to Biodata <br>CRUD</p>
         <div class="container d-md-flex justify-content-md-end text-center d-none">
           <p class="h5"><b><span id="weekday"></span> <br><span id="date"></span> <br><span id="time"></span></b></p>
         </div>
@@ -166,7 +166,8 @@
                     <div class="btn-group btn-group-sm gap-1">
                       <a href="./includes/viewPerson.php?id=<?= $row1['personID'] ?>"
                         class="btn btn-success py-0 px-2">View</a>
-                      <a href="#" class="btn btn-primary py-0 px-2">Edit</a>
+                      <a href="./includes/editPerson.php?id=<?= $row1['personID'] ?>"
+                        class="btn btn-primary py-0 px-2">Edit</a>
                       <form method="POST"><button type="submit" class="btn btn-danger py-0 px-2" name="delete"
                           value="<?= $row1['personID'] ?>">Delete</button> </form>
                     </div>
@@ -218,7 +219,8 @@
                     <div class="btn-group btn-group-sm gap-1">
                       <a href="./includes/viewEducation.php?id=<?= $row1['educationID'] ?>"
                         class="btn btn-success py-0 px-2">View</a>
-                      <a href="#" class="btn btn-primary py-0 px-2">Edit</a>
+                      <a href="./includes/editEducation.php?id=<?= $row1['educationID'] ?>"
+                        class="btn btn-primary py-0 px-2">Edit</a>
                       <form method="POST"><button type="submit" class="btn btn-danger py-0 px-2" name="delete"
                           value="<?= $row1['educationID'] ?>">Delete</button> </form>
                     </div>
@@ -270,7 +272,8 @@
                     <div class="btn-group btn-group-sm gap-1">
                       <a href="./includes/viewEmployment.php?id=<?= $row1['employmentID'] ?>"
                         class="btn btn-success py-0 px-2">View</a>
-                      <a href="#" class="btn btn-primary py-0 px-2">Edit</a>
+                      <a href="./includes/editEmployment.php?id=<?= $row1['employmentID'] ?>"
+                        class="btn btn-primary py-0 px-2">Edit</a>
                       <form method="POST"><button type="submit" class="btn btn-danger py-0 px-2" name="delete"
                           value="<?= $row1['employmentID'] ?>">Delete</button> </form>
                     </div>

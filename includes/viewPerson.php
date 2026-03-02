@@ -5,9 +5,7 @@ $Record = new Classes\Record($db);
 if (isset($_GET['id'])) {
     $row1 = $Record->viewPerson($_GET['id']);
 } else {
-    header('Location: ../index.php');
-    exit;
-}
+}//redirect
 ?>
 <!DOCTYPE html>
 <html lang="en">
