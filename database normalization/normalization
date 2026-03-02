@@ -12,7 +12,10 @@ email
 addressID (FK)
 dob
 gender
-fatherID (FK)
+father_lastName
+father_firstName 
+father_middleName
+father_suffix
 marital_stats
 religion
 
@@ -52,13 +55,6 @@ provinceID (PK) PR01
 provinceName Metro Manila
 cityID (FK)
 
-8✅
-father table
-fatherID (PK) F01
-father_lastName Sanchez
-father_firstName John
-father_middleName Doe
-father_suffix Sr.
 
 9✅
 skills table
