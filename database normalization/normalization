@@ -55,6 +55,10 @@ provinceID (PK) PR01
 provinceName Metro Manila
 cityID (FK)
 
+8✅
+school table
+schoolID
+schoolName
 
 9✅
 skills table
@@ -67,7 +71,7 @@ background table
 educationID
 personID
 acadID
-schoolName
+schoolID
 yr_grad
 course_id (can be null)
 
