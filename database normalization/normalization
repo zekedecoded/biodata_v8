@@ -33,8 +33,7 @@ hobbiesName Basketball
 
 4✅
 address Table
-addressID (PK) AD01
-streetName 123 Street
+addressID (PK) 
 provinceID (FK)
 
 
@@ -42,6 +41,7 @@ provinceID (FK)
 barangay table
 barangayID (PK) BR01
 barangayName 
+streetName
 
 6✅
 city table
