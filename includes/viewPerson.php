@@ -5,7 +5,8 @@ $Record = new Classes\Record($db);
 if (isset($_GET['id'])) {
     $row1 = $Record->viewPerson($_GET['id']);
 } else {
-    //redirect
+    header('Location: ../index.php');
+    exit;
 }
 ?>
 <!DOCTYPE html>
@@ -15,242 +16,196 @@ if (isset($_GET['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biodata CRD</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
-    <section class="container">
-        <!-- Personal forms -->
-        <form method="POST" class="g-3 needs-validation border border-1 m-5 p-5" novalidate>
-            <!-- <button type="button" class=" d-flex align-items-center" onclick="history.back()">
-                <img src="../imgs/return.png" class="img-fluid pe-2" width="24" alt="back">
-            </button> -->
-            <a href="../index.php"><img src="../imgs/return.png" class="img-fluid pe-2" width="24" alt="back"></a>
-            <div class="container">
-                <div class="display-4 mt-3 text-start fw-bold mb-2 d-none d-md-block">BIODATA</div>
-                <div class="display-6 mt-3 text-center fw-bold mb-1 d-md-none d-block">BIODATA</div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col col-md-4">
-                    <div class="row">
-                        <img src="../imgs/user.png" class="col-12 img-fluid" alt="profile">
-                    </div>
-                </div>
-                <div class="col col-md-8">
-                    <hr>
-                    <div class="col h3 fw-bold d-md-flex d-none">Personal Information</div>
-                    <div class="col h3 fw-bold d-md-none d-flex text-center">Personal Information</div>
-                    <div class="col-12 position-relative mb-2">
-                        <label for="validationTooltip01" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="validationTooltip01" name="firstname"
-                            value="<?= strtoupper($row1['firstname']) ?>" disabled>
-                        <div class="invalid-feedback">
-                            Please provide a valid first name.
-                        </div>
-                    </div>
-                    <div class="position-relative mb-2">
-                        <label for="validationTooltip02" class="form-label">Middle Name</label>
-                        <input type="text" class="form-control" id="validationTooltip02"
-                            value="<?= strtoupper($row1['middlename']) ?>" name="middlename" disabled>
-                        <div class="invalid-feedback">
-                            Please provide a valid middle name.
-                        </div>
-                    </div>
-                    <div class="position-relative mb-2">
-                        <label for="validationTooltip03" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" id="validationTooltip03" disabled
-                            value="<?= strtoupper($row1['lastname']) ?>" name="lastname">
-                        <div class="invalid-feedback">
-                            Please provide a valid last name.
-                        </div>
-                    </div>
-                    <div class="col-12 position-relative mb-2">
-                        <label for="validationTooltip04" class="form-label">Suffix</label>
-                        <input type="text" class="form-control" id="validationTooltip04" name="suffix" disabled
-                            value="<?= strtoupper($row1['suffix']) ?>">
-                        <div class="invalid-feedback">
-                            Please provide a valid suffix.
-                        </div>
-                    </div>
-                    <div class="position-relative mb-2">
-                        <label for="validationTooltip05" class="form-label">Date of Birth</label>
-                        <input type="date" class="form-control" id="validationTooltip05" disabled
-                            value="<?= strtoupper($row1['dob']) ?>" name="dob">
-                        <div class="invalid-feedback">
-                            Please provide a valid date of birth.
-                        </div>
-                    </div>
-                    <!-- gender new -->
-                    <div class="col-12 position-relative mb-2">
-                        <label>Gender</label>
-                        <div class="row row-cols-md-auto mt-2">
-                            <div class="col">
-                                <input type="radio" class="form-check-input" id="male" name="gender" value="Male"
-                                    <?= ($row1['gender'] == 'Male') ? 'checked' : '' ?> disabled><label
-                                    class="form-check-label" for="male">Male</label>
-                            </div>
-                            <div class="col">
-                                <input type="radio" class="form-check-input" id="female" name="gender" value="Female"
-                                    <?= ($row1['gender'] == 'Female') ? 'checked' : '' ?> disabled>
-                                <label class="form-check-label" for="female">Female</label>
-                            </div>
-                            <div class="col">
-                                <input type="radio" class="form-check-input" id="other" name="gender" value="Male"
-                                    <?= ($row1['gender'] == 'Other') ? 'checked' : '' ?> disabled>
-                                <label class="form-check-label" for="other">Other</label>
-                            </div>
-                        </div>
-                    </div>
-                    <!--  -->
-                    <div class="position-relative mb-2">
-                        <label for="validationTooltip12" class="form-label">Religion</label>
-                        <input type="text" class="form-control" id="validationTooltip12" disabled name="religion"
-                            value="<?= strtoupper($row1['religion']) ?>">
-                        <div class="invalid-feedback">
-                            Please provide a valid religion.
-                        </div>
-                    </div>
-                    <div class="position-relative mb-2">
-                        <label for="validationTooltip17" class="form-label">Marital Status</label>
-                        <input type="text" class="form-control" id="validationTooltip17" disabled name="marital_status"
-                            value="<?= strtoupper($row1['marital_status']) ?>">
-                        <div class="invalid-feedback">
-                            Please provide a valid marital status.
-                        </div>
-                    </div>
-                    <div class="position-relative mb-2">
-                        <label for="validationTooltip18" class="form-label">Language Known</label>
-                        <input type="text" class="form-control" id="validationTooltip18" disabled name="lang_known"
-                            value="<?= strtoupper($row1['lang_known']) ?>">
-                        <div class="invalid-feedback">
-                            Please provide a valid language known.
-                        </div>
-                    </div>
-                    <div class="position-relative mb-2">
-                        <label for="validationTooltip19" class="form-label">Hobbies</label>
-                        <input type="text" class="form-control" id="validationTooltip19" disabled name="hobbiesName"
-                            value="<?= strtoupper($row1['hobbiesName']) ?>">
-                        <div class="invalid-feedback">
-                            Please provide a valid hobbies name.
-                        </div>
-                    </div>
-                    <div class="position-relative mb-2">
-                        <label for="validationTooltip20" class="form-label">Skills</label>
-                        <input type="text" class="form-control" id="validationTooltip20" disabled name="skills"
-                            value="<?= strtoupper($row1['skills']) ?>">
-                        <div class="invalid-feedback">
-                            Please provide a valid skills.
-                        </div>
+    <section class="container my-4">
+        <form method="POST" class="needs-validation border border-1 rounded p-4 p-md-5" novalidate>
 
-                        <div class="col-12 position-relative mb-2">
-                            <label for="validationTooltip13" class="form-label">Father's First Name</label>
-                            <input type="text" class="form-control" id="validationTooltip13" disabled
-                                value="<?= strtoupper($row1['father_firstName']) ?>" name="father_firstName">
-                            <div class="invalid-feedback">
-                                Please provide a valid father's name.
-                            </div>
-                        </div>
-                        <div class="col-12 position-relative mb-2">
-                            <label for="validationTooltip14" class="form-label">Father's Middle Name</label>
-                            <input type="text" class="form-control" id="validationTooltip14" disabled
-                                value="<?= strtoupper($row1['father_middleName']) ?>" name="father_middleName">
-                            <div class="invalid-feedback">
-                                Please provide a valid father's name.
-                            </div>
-                        </div>
-                        <div class="col-12 position-relative mb-2">
-                            <label for="validationTooltip15" class="form-label">Father's Last Name</label>
-                            <input type="text" class="form-control" id="validationTooltip15" disabled
-                                value="<?= strtoupper($row1['father_lastName']) ?>" name="father_lastName">
-                        </div>
-                        <div class="col-12 position-relative mb-2">
-                            <label for="validationTooltip16" class="form-label">Father's Suffix</label>
-                            <input type="text" class="form-control" id="validationTooltip16" name="father_suffix"
-                                disabled value="<?= strtoupper($row1['father_suffix']) ?>">
-                            <div class=" invalid-feedback">
-                                Please provide a valid father's suffix.
-                            </div>
-                        </div>
-                    </div>
+            <a href="../index.php" class="d-inline-flex align-items-center mb-3 text-decoration-none">
+                <img src="../imgs/return.png" class="img-fluid me-2" width="24" alt="back">
+            </a>
+
+            <div class="display-5 fw-bold mb-2">BIODATA</div>
+            <hr>
+
+            <div class="row g-4">
+
+                <div class="col-12 col-md-4 text-center">
+                    <img src="../imgs/user.png" class="img-fluid rounded" alt="profile" style="max-width: 220px;">
                 </div>
-                <hr class="mt-5">
-                <div class="row mt-3">
-                    <div class="col col-md-6 h3 fw-bold">Contact Details</div>
-                    <div class="col col-md-6">
-                        <div class="col-12 col-md-6 position-relative">
-                            <label for="validationTooltipEmail" class="form-label">Email</label>
-                            <div class="input-group has-validation">
-                                <input type="email" class="form-control" id="validationTooltipEmail"
-                                    aria-describedby="validationTooltipEmailPrepend" disabled
-                                    value="<?= $row1['email'] ?>" name="email">
-                                <div class="invalid-feedback">
-                                    Please provide a valid email address.
+
+                <div class="col-12 col-md-8">
+                    <h3 class="fw-bold mb-3">Personal Information</h3>
+
+                    <div class="row g-2">
+                        <div class="col-12 col-md-6">
+                            <label for="firstname" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="firstname" name="firstname"
+                                value="<?= strtoupper($row1['firstname']) ?>" disabled>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label for="middlename" class="form-label">Middle Name</label>
+                            <input type="text" class="form-control" id="middlename" name="middlename"
+                                value="<?= strtoupper($row1['middlename']) ?>" disabled>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label for="lastname" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="lastname" name="lastname"
+                                value="<?= strtoupper($row1['lastname']) ?>" disabled>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label for="suffix" class="form-label">Suffix</label>
+                            <input type="text" class="form-control" id="suffix" name="suffix"
+                                value="<?= strtoupper($row1['suffix']) ?>" disabled>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label for="dob" class="form-label">Date of Birth</label>
+                            <input type="date" class="form-control" id="dob" name="dob"
+                                value="<?= $row1['dob'] ?>" disabled>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label class="form-label">Gender</label>
+                            <div class="d-flex gap-3 mt-1">
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" id="male" name="gender" value="Male"
+                                        <?= ($row1['gender'] == 'Male') ? 'checked' : '' ?> disabled>
+                                    <label class="form-check-label" for="male">Male</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" id="female" name="gender" value="Female"
+                                        <?= ($row1['gender'] == 'Female') ? 'checked' : '' ?> disabled>
+                                    <label class="form-check-label" for="female">Female</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" id="other" name="gender" value="Other"
+                                        <?= ($row1['gender'] == 'Other') ? 'checked' : '' ?> disabled>
+                                    <label class="form-check-label" for="other">Other</label>
                                 </div>
                             </div>
                         </div>
-                        <div class="col col-md-6 position-relative">
-                            <label for="validationTooltip07" class="form-label">Mobile No.</label>
-                            <input type="text" class="form-control" id="validationTooltip07" disabled
-                                value="<?= strtoupper($row1['mobile']) ?>" name="mobile">
-                            <div class="invalid-feedback">
-                                Please provide a valid mobile.
-                            </div>
+                        <div class="col-12 col-md-6">
+                            <label for="religion" class="form-label">Religion</label>
+                            <input type="text" class="form-control" id="religion" name="religion"
+                                value="<?= strtoupper($row1['religion']) ?>" disabled>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label for="marital_status" class="form-label">Marital Status</label>
+                            <input type="text" class="form-control" id="marital_status" name="marital_status"
+                                value="<?= strtoupper($row1['marital_status']) ?>" disabled>
+                        </div>
+                        <div class="col-12">
+                            <label for="lang_known" class="form-label">Language Known</label>
+                            <input type="text" class="form-control" id="lang_known" name="lang_known"
+                                value="<?= strtoupper($row1['lang_known']) ?>" disabled>
+                        </div>
+                        <div class="col-12">
+                            <label for="hobbiesName" class="form-label">Hobbies</label>
+                            <input type="text" class="form-control" id="hobbiesName" name="hobbiesName"
+                                value="<?= strtoupper($row1['hobbiesName']) ?>" disabled>
+                        </div>
+                        <div class="col-12">
+                            <label for="skills" class="form-label">Skills</label>
+                            <input type="text" class="form-control" id="skills" name="skills"
+                                value="<?= strtoupper($row1['skills']) ?>" disabled>
+                        </div>
+                    </div>
+
+                    <!-- Father's Information -->
+                    <h5 class="fw-bold mt-4 mb-3">Father's Information</h5>
+                    <div class="row g-2">
+                        <div class="col-12 col-md-6">
+                            <label for="father_firstName" class="form-label">Father's First Name</label>
+                            <input type="text" class="form-control" id="father_firstName" name="father_firstName"
+                                value="<?= strtoupper($row1['father_firstName']) ?>" disabled>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label for="father_middleName" class="form-label">Father's Middle Name</label>
+                            <input type="text" class="form-control" id="father_middleName" name="father_middleName"
+                                value="<?= strtoupper($row1['father_middleName']) ?>" disabled>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label for="father_lastName" class="form-label">Father's Last Name</label>
+                            <input type="text" class="form-control" id="father_lastName" name="father_lastName"
+                                value="<?= strtoupper($row1['father_lastName']) ?>" disabled>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label for="father_suffix" class="form-label">Father's Suffix</label>
+                            <input type="text" class="form-control" id="father_suffix" name="father_suffix"
+                                value="<?= strtoupper($row1['father_suffix']) ?>" disabled>
                         </div>
                     </div>
                 </div>
-                <hr class="mt-4">
-                <div class="row">
-                    <div class="col col-md-6 h3 fw-bold">Address Details</div>
-                    <div class="col col-md-6">
-                        <div class="position-relative">
-                            <label for="validationTooltip08" class="form-label">Street</label>
-                            <input type="text" class="form-control" id="validationTooltip08" disabled
-                                value="<?= strtoupper($row1['street']) ?>" name="street">
-                            <div class="invalid-feedback">
-                                Please provide a valid street.
-                            </div>
+            </div>
+
+            <hr class="mt-5">
+            <div class="row g-4 mt-1">
+                <div class="col-12 col-md-3">
+                    <h3 class="fw-bold">Contact Details</h3>
+                </div>
+                <div class="col-12 col-md-9">
+                    <div class="row g-2">
+                        <div class="col-12 col-md-6">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email"
+                                value="<?= $row1['email'] ?>" disabled>
                         </div>
-                        <div class="position-relative">
-                            <label for="validationTooltip09" class="form-label">Barangay</label>
-                            <input type="text" class="form-control" id="validationTooltip09" disabled
-                                value="<?= strtoupper($row1['barangay']) ?>" name="barangay">
-                            <div class="invalid-feedback">
-                                Please provide a valid barangay.
-                            </div>
-                        </div>
-                        <div class="position-relative">
-                            <label for="validationTooltip10" class="form-label">City</label>
-                            <input type="text" class="form-control" id="validationTooltip10" disabled
-                                value="<?= strtoupper($row1['city']) ?>" name="city">
-                            <div class="invalid-feedback">
-                                Please provide a valid city.
-                            </div>
-                        </div>
-                        <div class="position-relative">
-                            <label for="validationTooltip11" class="form-label">Province</label>
-                            <input type="text" class="form-control" id="validationTooltip11" disabled
-                                value="<?= strtoupper($row1['province']) ?>" name="province">
-                            <div class="invalid-feedback">
-                                Please provide a valid province.
-                            </div>
+                        <div class="col-12 col-md-6">
+                            <label for="mobile" class="form-label">Mobile No.</label>
+                            <input type="text" class="form-control" id="mobile" name="mobile"
+                                value="<?= strtoupper($row1['mobile']) ?>" disabled>
                         </div>
                     </div>
                 </div>
-                <div class="row mt-3 g-0 gap-md-5 gap-2 justify-content-center">
-                    <div class="col-12 col-md-5 btn btn-outline-primary">Edit Profile</div>
-                    <div class="col-12 col-md-5 btn btn-outline-danger">Delete Profile</div>
+            </div>
+
+            <hr class="mt-4">
+            <div class="row g-4 mt-1">
+                <div class="col-12 col-md-3">
+                    <h3 class="fw-bold">Address Details</h3>
+                </div>
+                <div class="col-12 col-md-9">
+                    <div class="row g-2">
+                        <div class="col-12 col-md-6">
+                            <label for="street" class="form-label">Street</label>
+                            <input type="text" class="form-control" id="street" name="street"
+                                value="<?= strtoupper($row1['street']) ?>" disabled>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label for="barangay" class="form-label">Barangay</label>
+                            <input type="text" class="form-control" id="barangay" name="barangay"
+                                value="<?= strtoupper($row1['barangay']) ?>" disabled>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label for="city" class="form-label">City</label>
+                            <input type="text" class="form-control" id="city" name="city"
+                                value="<?= strtoupper($row1['city']) ?>" disabled>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label for="province" class="form-label">Province</label>
+                            <input type="text" class="form-control" id="province" name="province"
+                                value="<?= strtoupper($row1['province']) ?>" disabled>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <div class="row mt-5 g-2 justify-content-center">
+                <div class="col-12 col-md-4">
+                    <button type="button" class="btn btn-outline-primary w-100">Edit Profile</button>
+                </div>
+                <div class="col-12 col-md-4">
+                    <button type="button" class="btn btn-outline-danger w-100">Delete Profile</button>
+                </div>
             </div>
+
         </form>
     </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/script.js"></script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-    crossorigin="anonymous"></script>
-<script src="../js/script.js"></script>
 
 </html>

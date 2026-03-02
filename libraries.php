@@ -8,7 +8,7 @@
 <!-- <link rel="icon" href="img/neust_logo.png" type="image/png" sizes="16x16"> -->
 
 <!--js bootstrap offline  -->
-<script src="./bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="./bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script> -->
 
 <!-- custom js -->
 <script src="./js/script.js"></script>
