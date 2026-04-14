@@ -1,15 +1,14 @@
 <?php
-include '../Record.php';
-$Record = new Classes\Record($db);
+include '../Employment.php';
 
 if (isset($_GET['id'])) {
-  $row1 = $Record->viewEmployment($_GET['id']);
+  $row1 = $Employment->viewEmployment($_GET['id']);
 } else {
   //redirect
 }
 
 if (isset($_POST['editEmployment'])) {
-  $Record->editEmployment($_GET['id']);
+  $Employment->editEmployment($_GET['id']);
 }
 ?>
 <!DOCTYPE html>
@@ -39,8 +38,8 @@ if (isset($_POST['editEmployment'])) {
         <div class="col col-md-6">
           <div class="col-12 position-relative mb-2">
             <label for="validationTooltip01" class="form-label">Company Name</label>
-            <input type="text" class="form-control" id="validationTooltip01" name="company"
-              value="<?= strtoupper($row1['company']) ?>" required>
+            <input type="text" class="form-control" id="validationTooltip01" value="<?= strtoupper($row1['company']) ?>"
+              required>
           </div>
           <div class=" position-relative mb-2">
             <label for="validationTooltip02" class="form-label">Position</label>

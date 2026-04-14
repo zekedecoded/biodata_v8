@@ -1,7 +1,6 @@
 <?php
-include '../Record.php';
-$Record = new Classes\Record($db);
-$Record->AddEmployment();
+include '../Employment.php';
+$Employment->AddEmployment();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,17 +15,17 @@ $Record->AddEmployment();
 </head>
 
 <body>
-  <section class="container">
+  <section class="container py-5">
     <!-- Employment forms -->
-    <form method="POST" class="g-3 needs-validation border border-1 m-5 p-5" novalidate>
+    <form method="POST" class="g-3 needs-validation border border-1 m-2 px-4" novalidate>
       <div class="container">
         <div class="display-4 mt-3 text-start fw-bold mb-1 d-none d-md-block">Employment Information</div>
         <div class="display-6 mt-3 text-center fw-bold mb-1 d-md-none d-block">Employment Information</div>
       </div>
       <hr>
       <div class="row">
-        <div class="col col-md-6 h3 fw-bold">Employment Background</div>
-        <div class="col col-md-6">
+        <div class="col-12 col-md-6 h3 fw-bold">Employment Background</div>
+        <div class="col-12 col-md-6">
           <div class="col-12 position-relative mb-2">
             <label for="validationTooltip01" class="form-label">Company Name</label>
             <input type="text" class="form-control" id="validationTooltip01" name="company" required>
@@ -57,14 +56,10 @@ $Record->AddEmployment();
           </div>
         </div>
       </div>
-      </div>
-      </div>
-      <div class="col-12 mt-4">
-        <div class="row d-flex justify-content-center g-0 gap-0 gap-md-5">
-          <button class="col-12 col-md-5 btn btn-outline-danger mb-2 mt-2" type="reset">Clear
-            Form</button>
-          <button class="col-12 col-md-5 btn btn-primary mb-2 mt-2" type="submit" name="AddEmployment">Submit
-            form</button>
+      <div class="col-12 mt-3">
+        <div class="row d-flex justify-content-center justify-content-md-between g-0 gap-1">
+          <button class="col col-md-5 btn btn-outline-danger mb-3 mt-2" type="reset">Clear Form</button>
+          <button class="col col-md-5 btn btn-primary mb-3 mt-2" type="submit" name="AddEmployment">Submit form</button>
         </div>
       </div>
     </form>

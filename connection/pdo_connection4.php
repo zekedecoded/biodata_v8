@@ -1,12 +1,12 @@
 <?php
 class Database
 {
-    private $host = 'localhost';
-    private $db = 'persondb';
-    private $user = 'root';
-    private $pass = 'gitzeke126';
-    private $charset = 'utf8mb4';
-    private $port = '3306';
+    private $host = "localhost";
+    private $db = "persondb";
+    private $user = "root";
+    private $pass = "gitzeke126";
+    private $charset = "utf8mb4";
+    private $port = "3306";
     private $options = [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
@@ -28,4 +28,4 @@ class Database
 }
 $connect = new Database();
 $db = $connect->initConnection();
-// echo'Connection4 Connected Successfully';
+// echo 'Connection4 Connected Successfully';

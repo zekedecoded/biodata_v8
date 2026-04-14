@@ -1,14 +1,12 @@
 <?php
-include '../Record.php';
-$Record = new Classes\Record($db);
-
+include '../Education.php';
 if (isset($_GET['id'])) {
-    $row1 = $Record->viewEducation($_GET['id']);
+    $row1 = $Education->viewEducation($_GET['id']);
 } else {
     //redirect
 }
 if (isset($_POST['editEducation'])) {
-    $Record->editEducation($_GET['id']);
+    $Education->editEducation($_GET['id']);
 }
 ?>
 <!DOCTYPE html>
@@ -25,19 +23,18 @@ if (isset($_POST['editEducation'])) {
 
 <body>
     <section class="container">
-        <!-- Personal forms -->
-
         <form method="POST" class="g-3 needs-validation border border-1 m-5 p-5" novalidate>
             <a href="../index.php"><img src="../imgs/return.png" class="img-fluid pe-2" width="24" alt="back"></a>
-
             <div class="container">
                 <div class="display-4 mt-3 text-start fw-bold mb-3 d-none d-md-block">Educational Information</div>
                 <div class="display-6 mt-3 text-center fw-bold mb-1 d-md-none d-block">Educational Information</div>
             </div>
             <hr>
+
+            <!-- School Details -->
             <div class="row">
-                <div class="col col-md-6 h3 fw-bold">School Details</div>
-                <div class="col col-md-6">
+                <div class="col-12 col-md-6 h3 fw-bold">School Details</div>
+                <div class="col-12 col-md-6">
                     <div class="col-12 position-relative mb-2">
                         <label for="validationTooltip01" class="form-label">School Name</label>
                         <input type="text" class="form-control" id="validationTooltip01" name="schoolName" required
@@ -45,25 +42,24 @@ if (isset($_POST['editEducation'])) {
                     </div>
                     <div class="position-relative mb-2">
                         <label for="validationTooltip02" class="form-label">Academic Level</label>
-                        <input type="text" class="form-control" id="validationTooltip02" required
-                            value="<?= strtoupper($row1['acadLevel']) ?>" name="acadLevel">
+                        <input type="text" class="form-control" id="validationTooltip02" name="acadLevel" required
+                            value="<?= strtoupper($row1['acadLevel']) ?>">
                     </div>
                     <div class="position-relative mb-2">
                         <label for="validationTooltip03" class="form-label">Course</label>
-                        <input type="text" class="form-control" id="validationTooltip03" required
-                            value="<?= strtoupper($row1['course_name']) ?>" name="course_name">
+                        <input type="text" class="form-control" id="validationTooltip03" name="course_name" required
+                            value="<?= strtoupper($row1['course_name']) ?>">
                     </div>
                     <div class="col-12 position-relative mb-2">
                         <label for="validationTooltip04" class="form-label">Year Graduated</label>
-                        <input type="text" class="form-control" id="validationTooltip04" name="yr_grad"
-                            value="<?= strtoupper($row1['yr_grad']) ?>" required>
+                        <input type="text" class="form-control" id="validationTooltip04" name="yr_grad" required
+                            value="<?= strtoupper($row1['yr_grad']) ?>">
                     </div>
                 </div>
             </div>
-            </div>
-            </div>
+
             <div class="row mt-3 g-0 gap-md-5 gap-2 justify-content-center">
-                <div class="col-12 col-md-5 btn btn-outline-danger">Delete Profile</div>
+                <button class="col-12 col-md-5 btn btn-outline-danger" type="button">Delete Profile</button>
                 <button class="col-12 col-md-5 btn btn-primary" type="submit" name="editEducation">Update
                     Education</button>
             </div>

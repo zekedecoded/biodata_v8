@@ -1,15 +1,28 @@
 <?php
-include '../Record.php';
-$Record = new Classes\Record($db);
-$Record->AddPerson();
+
+use Classes\FileUpload;
+include '../Person.php';
+$Person->AddPerson();
 
 if (isset($_GET['id'])) {
-  $row1 = $Record->viewPerson($_GET['id']);
+  $row1 = $Person->viewPerson($_GET['id']);
 } else {
   // redirect
 }
+
 if (isset($_POST['editPerson'])) {
-  $Record->editPerson($_GET['id']);
+  $Person->editPerson($_GET['id']);
+
+  // if ($_FILES['pfp']['name']) {x
+  //   $uploads = new FileUpload($_FILES['pfp'], '../profiles/');
+  //   $pfp = $uploads->fileName;
+  //   if ($uploads->upload()) {
+  //     $updatePfp = $this->con->prepare('UPDATE person SET pfp = ? WHERE personID = ?');
+  //     $updatePfp->execute([$pfp, $this->personID]);
+  //   } else {
+  //     //redirect
+  //   }
+  // }
 }
 ?>
 <!DOCTYPE html>
@@ -26,48 +39,58 @@ if (isset($_POST['editPerson'])) {
 
 <body>
   <section class="container">
-    <!-- Personal forms -->
-    <form method="POST" class="g-3 needs-validation border border-1 m-2 ps-5 pe-4" novalidate>
+    <form method="POST" class="g-3 needs-validation border border-1 m-2 ps-5 pe-4" enctype="multipart/form-data"
+      novalidate>
       <div class="container">
         <div class="display-4 mt-3 text-start fw-bold mb-1 d-none d-md-block">Personal Information</div>
         <div class="display-6 mt-3 text-center fw-bold mb-1 d-md-none d-block">Personal Information</div>
       </div>
+
       <hr>
+
       <div class="row">
-        <div class="col col-md-6 h3 fw-bold">Basic Details</div>
-        <div class="col col-md-6">
+        <!-- Basic Details -->
+        <div class="col-12 col-md-6 h3 fw-bold">
+          <div class="h3 fw-bold">Basic Details</div>
+          <div class="container-fluid">
+            <img src="../profiles/<?= $row1['pfp']; ?>" alt="profile"
+              class="img-fluid rounded-circle object-fit-cover border border-dark border-4"
+              style="width: 200px; height: 200px;">
+            <input type="file" name="pfp" value="<?= $row1['pfp'] ?>" placeholder="Change Profile">
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
           <div class="col-12 position-relative mb-2">
             <label for="validationTooltip01" class="form-label">First Name</label>
-            <input type="text" class="form-control" id="validationTooltip01" name="firstname"
-              value="<?= strtoupper($row1['firstname']) ?>">
+            <input type="text" class="form-control" name="firstname" value="<?= strtoupper($row1['firstname']) ?>">
           </div>
+
           <div class="position-relative mb-2">
             <label for="validationTooltip02" class="form-label">Middle Name</label>
-            <input type="text" class="form-control" id="validationTooltip02" required name="middlename"
+            <input type="text" class="form-control" id="validationTooltip02" name="middlename"
               value="<?= strtoupper($row1['middlename']) ?>">
           </div>
+
           <div class="position-relative mb-2">
             <label for="validationTooltip03" class="form-label">Last Name</label>
             <input type="text" class="form-control" id="validationTooltip03" required name="lastname"
               value="<?= strtoupper($row1['lastname']) ?>">
           </div>
+
           <div class="col-12 position-relative mb-2">
             <label for="validationTooltip04" class="form-label">Suffix</label>
             <input type="text" class="form-control" id="validationTooltip04" name="suffix"
               value="<?= strtoupper($row1['suffix']) ?>">
-            <div class="invalid-feedback">
-              Please provide a valid suffix.
-            </div>
+            <div class="invalid-feedback">Please provide a valid suffix.</div>
           </div>
+
           <div class="position-relative mb-2">
             <label for="validationTooltip05" class="form-label">Date of Birth</label>
             <input type="date" class="form-control" id="validationTooltip05" required name="dob"
               value="<?= strtoupper($row1['dob']) ?>">
-            <div class="invalid-feedback">
-              Please provide a valid date of birth.
-            </div>
+            <div class="invalid-feedback">Please provide a valid date of birth.</div>
           </div>
-          <!-- gender new -->
+
           <div class="position-relative mb-2">
             <label>Gender</label>
             <div class="row row-cols-md-auto mt-2">
@@ -88,83 +111,78 @@ if (isset($_POST['editPerson'])) {
               </div>
             </div>
           </div>
-          <!--  -->
+
           <div class="position-relative mb-2">
             <label for="validationTooltip12" class="form-label">Religion</label>
             <input type="text" class="form-control" id="validationTooltip12" required name="religion"
               value="<?= strtoupper($row1['religion']) ?>">
-            <div class="invalid-feedback">
-              Please provide a valid religion.
-            </div>
+            <div class="invalid-feedback">Please provide a valid religion.</div>
           </div>
+
           <div class="position-relative mb-2">
             <label for="validationTooltip17" class="form-label">Marital Status</label>
             <input type="text" class="form-control" id="validationTooltip17" required name="marital_status"
               value="<?= strtoupper($row1['marital_status']) ?>">
-            <div class="invalid-feedback">
-              Please provide a valid marital status.
-            </div>
+            <div class="invalid-feedback">Please provide a valid marital status.</div>
           </div>
+
           <div class="position-relative mb-2">
             <label for="validationTooltip18" class="form-label">Language Known</label>
             <input type="text" class="form-control" id="validationTooltip18" required name="lang_known"
               value="<?= strtoupper($row1['lang_known']) ?>">
-            <div class="invalid-feedback">
-              Please provide a valid language known.
-            </div>
+            <div class="invalid-feedback">Please provide a valid language known.</div>
           </div>
+
           <div class="position-relative mb-2">
             <label for="validationTooltip19" class="form-label">Hobbies</label>
             <input type="text" class="form-control" id="validationTooltip19" required name="hobbiesName"
               value="<?= strtoupper($row1['hobbiesName']) ?>">
-            <div class="invalid-feedback">
-              Please provide a valid hobbies name.
-            </div>
+            <div class="invalid-feedback">Please provide a valid hobbies name.</div>
           </div>
+
           <div class="position-relative mb-2">
             <label for="validationTooltip20" class="form-label">Skills</label>
             <input type="text" class="form-control" id="validationTooltip20" required name="skills"
               value="<?= strtoupper($row1['skills']) ?>">
-            <div class="invalid-feedback">
-              Please provide a valid skills.
-            </div>
-            <div class="col-12 position-relative">
-              <label for="validationTooltip13" class="form-label">Father's First Name</label>
-              <input type="text" class="form-control" id="validationTooltip13" required name="father_firstName"
-                value="<?= strtoupper($row1['father_firstName']) ?>">
-              <div class="invalid-feedback">
-                Please provide a valid father's name.
-              </div>
-            </div>
-            <div class="col-12 position-relative">
-              <label for="validationTooltip14" class="form-label">Father's Middle Name</label>
-              <input type="text" class="form-control" id="validationTooltip14" required name="father_middleName"
-                value="<?= strtoupper($row1['father_middleName']) ?>">
-              <div class="invalid-feedback">
-                Please provide a valid father's name.
-              </div>
-            </div>
-            <div class="col-12 position-relative">
-              <label for="validationTooltip15" class="form-label">Father's Last Name</label>
-              <input type="text" class="form-control" id="validationTooltip15" required name="father_lastName"
-                value="<?= strtoupper($row1['father_lastName']) ?>">
-              <div class="invalid-feedback">
-                Please provide a valid father's name.
-              </div>
-            </div>
-            <div class="col-12 position-relative">
-              <label for="validationTooltip16" class="form-label">Father's Suffix</label>
-              <input type="text" class="form-control" id="validationTooltip16" name="father_suffix"
-                value="<?= strtoupper($row1['father_suffix']) ?>">
-              <div class="invalid-feedback">
-                Please provide a valid father's suffix.
-              </div>
-            </div>
+            <div class="invalid-feedback">Please provide a valid skills.</div>
+          </div>
+
+          <!-- Father's Details -->
+          <div class="col-12 position-relative">
+            <label for="validationTooltip13" class="form-label">Father's First Name</label>
+            <input type="text" class="form-control" id="validationTooltip13" required name="father_firstName"
+              value="<?= strtoupper($row1['father_firstName']) ?>">
+            <div class="invalid-feedback">Please provide a valid father's name.</div>
+          </div>
+
+          <div class="col-12 position-relative">
+            <label for="validationTooltip14" class="form-label">Father's Middle Name</label>
+            <input type="text" class="form-control" id="validationTooltip14" required name="father_middleName"
+              value="<?= strtoupper($row1['father_middleName']) ?>">
+            <div class="invalid-feedback">Please provide a valid father's name.</div>
+          </div>
+
+          <div class="col-12 position-relative">
+            <label for="validationTooltip15" class="form-label">Father's Last Name</label>
+            <input type="text" class="form-control" id="validationTooltip15" required name="father_lastName"
+              value="<?= strtoupper($row1['father_lastName']) ?>">
+            <div class="invalid-feedback">Please provide a valid father's name.</div>
+          </div>
+
+          <div class="col-12 position-relative">
+            <label for="validationTooltip16" class="form-label">Father's Suffix</label>
+            <input type="text" class="form-control" id="validationTooltip16" name="father_suffix"
+              value="<?= strtoupper($row1['father_suffix']) ?>">
+            <div class="invalid-feedback">Please provide a valid father's suffix.</div>
           </div>
         </div>
+
         <hr class="mt-5">
+
+        <!-- Contact Details -->
         <div class="row mt-3">
           <div class="col col-md-6 h3 fw-bold">Contact Details</div>
+
           <div class="col col-md-6">
             <div class="col-12 col-md-6 position-relative">
               <label for="validationTooltipEmail" class="form-label">Email</label>
@@ -172,70 +190,69 @@ if (isset($_POST['editPerson'])) {
                 <input type="email" class="form-control" id="validationTooltipEmail"
                   aria-describedby="validationTooltipEmailPrepend" required name="email"
                   value="<?= strtoupper($row1['email']) ?>">
-                <div class="invalid-feedback">
-                  Please provide a valid email address.
-                </div>
+                <div class="invalid-feedback">Please provide a valid email address.</div>
               </div>
             </div>
+
             <div class="col col-md-6 position-relative">
               <label for="validationTooltip07" class="form-label">Mobile No.</label>
               <input type="tel" class="form-control" id="validationTooltip07" required name="mobile"
                 value="<?= strtoupper($row1['mobile']) ?>">
-              <div class="invalid-feedback">
-                Please provide a valid mobile.
-              </div>
+              <div class="invalid-feedback">Please provide a valid mobile.</div>
             </div>
           </div>
         </div>
+
         <hr class="mt-4">
+
+        <!-- Address Details -->
         <div class="row">
           <div class="col col-md-6 h3 fw-bold">Address Details</div>
+
           <div class="col col-md-6">
             <div class="position-relative">
               <label for="validationTooltip08" class="form-label">Street</label>
               <input type="text" class="form-control" id="validationTooltip08" required name="street"
                 value="<?= strtoupper($row1['street']) ?>">
-              <div class="invalid-feedback">
-                Please provide a valid street.
-              </div>
+              <div class="invalid-feedback">Please provide a valid street.</div>
             </div>
+
             <div class="position-relative">
               <label for="validationTooltip09" class="form-label">Barangay</label>
               <input type="text" class="form-control" id="validationTooltip09" required name="barangay"
                 value="<?= strtoupper($row1['barangay']) ?>">
-              <div class="invalid-feedback">
-                Please provide a valid barangay.
-              </div>
+              <div class="invalid-feedback">Please provide a valid barangay.</div>
             </div>
+
             <div class="position-relative">
               <label for="validationTooltip10" class="form-label">City</label>
               <input type="text" class="form-control" id="validationTooltip10" required name="city"
                 value="<?= strtoupper($row1['city']) ?>">
-              <div class="invalid-feedback">
-                Please provide a valid city.
-              </div>
+              <div class="invalid-feedback">Please provide a valid city.</div>
             </div>
+
             <div class="position-relative">
               <label for="validationTooltip11" class="form-label">Province</label>
               <input type="text" class="form-control" id="validationTooltip11" required name="province"
                 value="<?= strtoupper($row1['province']) ?>">
-              <div class="invalid-feedback">
-                Please provide a valid province.
-              </div>
+              <div class="invalid-feedback">Please provide a valid province.</div>
             </div>
           </div>
         </div>
       </div>
-      </div>
+
       <div class="col-12 mt-3">
-        <div class="d-flex justify-content-center justify-content-md-between g-0 gap-1">
+        <div class="g-0 gap-1">
           <button class="col col-md-5 btn btn-primary mb-3 mt-2" type="submit" name="editPerson">Save</button>
         </div>
+      </div>
     </form>
   </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+  <script src="../js/script.js"></script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-<script src="../js/script.js"></script>
 
 </html>

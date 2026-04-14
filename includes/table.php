@@ -5,14 +5,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Biodata CRD</title>
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.3.7/css/dataTables.dataTables.css" />
+
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link rel="stylesheet" href="../css/style.css">
+
+  <!-- <link rel="stylesheet" href="../css/style.css"> -->
+  <!-- data table -->
+
+
 </head>
 
 <body>
   <!-- header -->
-  <section class="container-fluid row-cols-12 mt-4">
+  <section class="container-fluid row-cols-12 mt-4" s>
     <div class="container">
       <div class="container d-flex align-items-center">
         <img src="./imgs/icon_data.png" class="img-fluid" alt="Icon">
@@ -61,7 +68,7 @@
       <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
         <!-- person table -->
         <div class="table-responsive border border-2 rounded shadow-sm">
-          <table class="table table-hover custom-table text-center mb-0">
+          <table class="table table-hover custom-table text-center mb-0" id="myTable">
             <thead class="text-center">
               <tr>
                 <th scope="col">#</th>
@@ -93,97 +100,252 @@
               <?php
               $number = 0;
               foreach ($data as $row1) {
-                $number++;
-                ?>
+                  $number++; ?>
                 <tr>
                   <td>
                     <?= $number ?>
                   </td>
                   <td class="fw-bold">
-                    <?= strtoupper($row1['lastname']) ?>
+                    <?= strtoupper($row1["lastname"]) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['firstname']) ?>
+                    <?= strtoupper($row1["firstname"]) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['middlename']) ?>
+                    <?= strtoupper($row1["middlename"]) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['suffix']) ?>
+                    <?= strtoupper($row1["suffix"]) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['dob']) ?>
+                    <?= strtoupper($row1["dob"]) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['gender']) ?>
+                    <?= strtoupper($row1["gender"]) ?>
                   </td>
                   <td class="text-lowercase text-primary">
-                    <?= strtoupper($row1['email']) ?>
+                    <?= strtoupper($row1["email"]) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['mobile']) ?>
+                    <?= strtoupper($row1["mobile"]) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['street']) ?>
+                    <?= strtoupper($row1["street"]) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['barangay']) ?>
+                    <?= strtoupper($row1["barangay"]) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['city']) ?>
+                    <?= strtoupper($row1["city"]) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['province']) ?>
+                    <?= strtoupper($row1["province"]) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['religion']) ?>
+                    <?= strtoupper($row1["religion"]) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['father_lastName']) ?>
+                    <?= strtoupper($row1["father_lastName"]) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['father_firstName']) ?>
+                    <?= strtoupper($row1["father_firstName"]) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['father_middleName']) ?>
+                    <?= strtoupper($row1["father_middleName"]) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['father_suffix']) ?>
+                    <?= strtoupper($row1["father_suffix"]) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['marital_status']) ?>
+                    <?= strtoupper($row1["marital_status"]) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['lang_known']) ?>
+                    <?= strtoupper($row1["lang_known"]) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['hobbiesName']) ?>
+                    <?= strtoupper($row1["hobbiesName"]) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['skills']) ?>
+                    <?= strtoupper($row1["skills"]) ?>
                   </td>
                   <td class="action-sticky">
                     <div class="btn-group btn-group-sm gap-1">
-                      <a href="./includes/viewPerson.php?id=<?= $row1['personID'] ?>"
-                        class="btn btn-success py-0 px-2">View</a>
-                      <a href="./includes/editPerson.php?id=<?= $row1['personID'] ?>"
-                        class="btn btn-primary py-0 px-2">Edit</a>
-                      <form method="POST"><button type="submit" class="btn btn-danger py-0 px-2" name="delete"
-                          value="<?= $row1['personID'] ?>">Delete</button> </form>
+                      <a href="./includes/viewPerson.php?id=<?= $row1["personID"] ?>" class="btn btn-success">View</a>
+                      <a href="./includes/editPerson.php?id=<?= $row1["personID"] ?>" class="btn btn-primary">Edit</a>
+                      <!-- <form method="POST"><button type="submit" class="btn btn-danger" value="<?= $row1[
+                          "personID"
+                      ] ?>"
+                          name="deletePerson">Delete</button>
+                      </form> -->
                     </div>
                   </td>
                 </tr>
-              <?php } ?>
+              <?php
+              }
+              ?>
             </tbody>
           </table>
         </div>
+        <!-- person table -->
+         <br><br><br><br>
+         <div class="container">
+           <h1>TEMPORARY TABLE</h1>
+         </div>
+        <div class="table-responsive border border-2 rounded shadow-sm">
+          <table class="table table-hover custom-table text-center mb-0" id="tempTable">
+            <thead class="text-center">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Middle Name</th>
+                <th scope="col">Suffix</th>
+                <th scope="col">Date of Birth</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Email</th>
+                <th scope="col">Mobile No.</th>
+                <th scope="col">Street</th>
+                <th scope="col">Barangay</th>
+                <th scope="col">City</th>
+                <th scope="col">Province</th>
+                <th scope="col">Religion</th>
+                <th scope="col">Father's Last Name</th>
+                <th scope="col">Father's First Name</th>
+                <th scope="col">Father's Middle Name</th>
+                <th scope="col">Father's Suffix</th>
+                <th scope="col">Marital Status</th>
+                <th scope="col">Languages Known</th>
+                <th scope="col">Hobbies</th>
+                <th scope="col">Skills</th>
+                <th scope="col" class="action-sticky">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              $number = 0;
+              foreach ($data3 as $row1) {
+                  $number++; ?>
+                <tr>
+                  <td>
+                    <?= $number ?>
+                  </td>
+                  <td class="fw-bold">
+                    <?= strtoupper($row1["lastname"]) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1["firstname"]) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1["middlename"]) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1["suffix"]) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1["dob"]) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1["gender"]) ?>
+                  </td>
+                  <td class="text-lowercase text-primary">
+                    <?= strtoupper($row1["email"]) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1["mobile"]) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1["street"]) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1["barangay"]) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1["city"]) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1["province"]) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1["religion"]) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1["father_lastName"]) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1["father_firstName"]) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1["father_middleName"]) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1["father_suffix"]) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1["marital_status"]) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1["lang_known"]) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1["hobbiesName"]) ?>
+                  </td>
+                  <td>
+                    <?= strtoupper($row1["skills"]) ?>
+                  </td>
+                  <td class="action-sticky">
+                    <div class="btn-group btn-group-sm gap-1">
+                      <a href="./includes/viewTemp.php?id=<?= $row1["personID"] ?>" class="btn btn-success">View</a>
+                      <a href="./accept.php?personID=<?= $row1["personID"] ?>" class="btn btn-dark">Accept</a>
+                      <!-- <form method="POST"><button type="submit" class="btn btn-danger" 
+                          name="deleteTemp">Decline</button>
+                      </form> -->
+                      <a href="./decline.php?personID=<?= $row1["personID"] ?>" class="btn btn-danger">Decline</a>
+                    </div>
+                  </td>
+                </tr>
+              <?php
+              }
+              ?>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- modal creation -->
+        <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+          tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Delete Record</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body d-flex flex-column align-items-center gap-3">
+                <div class="bin">
+                  <img src="./imgs/bin.png" alt="delete warning" class="img-fluid" width="56px" height="56px">
+                </div>
+                <div class="text">
+                  <h5 class="text-wrap text-md-nowrap">Are you sure you want to delete this record? <br> This action
+                    cannot be
+                    undone.</h5>
+                </div>
+              </div>
+              <!-- the delete button is here -->
+              <div class="modal-footer text-center d-flex justify-content-center gap-1">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form method="POST"><button type="submit" class="btn btn-danger" name="deletePerson">Delete</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--end of modal-->
         <!--  -->
       </div>
       <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab"><!-- table -->
         <!-- education table -->
         <div class="table-responsive border border-2 rounded shadow-sm">
-          <table class="table table-hover custom-table text-center mb-0">
-            <thead class="text-center">
+          <table class="table table-hover custom-table text-center mb-0" id="myTable1">
+            <thead class=" text-center">
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">School Name</th>
@@ -197,36 +359,37 @@
               <?php
               $number = 0;
               foreach ($data1 as $row1) {
-                $number++;
-                ?>
+                  $number++; ?>
                 <tr>
                   <td>
                     <?= $number ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['schoolName']) ?>
+                    <?= strtoupper($row1["schoolName"]) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['acadLevel']) ?>
+                    <?= strtoupper($row1["acadLevel"]) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['course_name']) ?>
+                    <?= strtoupper($row1["course_name"]) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['yr_grad']) ?>
+                    <?= strtoupper($row1["yr_grad"]) ?>
                   </td>
                   <td class="action-sticky">
                     <div class="btn-group btn-group-sm gap-1">
-                      <a href="./includes/viewEducation.php?id=<?= $row1['educationID'] ?>"
+                      <a href="./includes/viewEducation.php?id=<?= $row1["educationID"] ?>"
                         class="btn btn-success py-0 px-2">View</a>
-                      <a href="./includes/editEducation.php?id=<?= $row1['educationID'] ?>"
+                      <a href="./includes/editEducation.php?id=<?= $row1["educationID"] ?>"
                         class="btn btn-primary py-0 px-2">Edit</a>
-                      <form method="POST"><button type="submit" class="btn btn-danger py-0 px-2" name="delete"
-                          value="<?= $row1['educationID'] ?>">Delete</button> </form>
+                      <form method="POST"><button type="submit" class="btn btn-danger py-0 px-2" name="deleteEducation"
+                          value="<?= $row1["educationID"] ?>">Delete</button> </form>
                     </div>
                   </td>
                 </tr>
-              <?php } ?>
+              <?php
+              }
+              ?>
             </tbody>
           </table>
         </div>
@@ -235,7 +398,7 @@
       <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">
         <!-- employment table -->
         <div class="table-responsive border border-2 rounded shadow-sm">
-          <table class="table table-hover custom-table text-center mb-0">
+          <table class="table table-hover custom-table text-center mb-0" id="myTable2">
             <thead class="text-center">
               <tr>
                 <th scope="col">#</th>
@@ -250,36 +413,37 @@
               <?php
               $number = 0;
               foreach ($data2 as $row1) {
-                $number++;
-                ?>
+                  $number++; ?>
                 <tr>
                   <td>
                     <?= $number ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['company']) ?>
+                    <?= strtoupper($row1["company"]) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['position']) ?>
+                    <?= strtoupper($row1["position"]) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['date_joined']) ?>
+                    <?= strtoupper($row1["date_joined"]) ?>
                   </td>
                   <td>
-                    <?= strtoupper($row1['date_exit']) ?>
+                    <?= strtoupper($row1["date_exit"]) ?>
                   </td>
                   <td class="action-sticky">
                     <div class="btn-group btn-group-sm gap-1">
-                      <a href="./includes/viewEmployment.php?id=<?= $row1['employmentID'] ?>"
+                      <a href="./includes/viewEmployment.php?id=<?= $row1["employmentID"] ?>"
                         class="btn btn-success py-0 px-2">View</a>
-                      <a href="./includes/editEmployment.php?id=<?= $row1['employmentID'] ?>"
+                      <a href="./includes/editEmployment.php?id=<?= $row1["employmentID"] ?>"
                         class="btn btn-primary py-0 px-2">Edit</a>
-                      <form method="POST"><button type="submit" class="btn btn-danger py-0 px-2" name="delete"
-                          value="<?= $row1['employmentID'] ?>">Delete</button> </form>
+                      <form method="POST"><button type="submit" class="btn btn-danger py-0 px-2" name="deleteEmployment"
+                          value="<?= $row1["employmentID"] ?>">Delete</button> </form>
                     </div>
                   </td>
                 </tr>
-              <?php } ?>
+              <?php
+              }
+              ?>
             </tbody>
           </table>
         </div>
@@ -300,8 +464,22 @@
     <li><a class="dropdown-item" href="./includes/addEmployment.php">Add Employment</a></li>
   </ul>
 </div>
+<!-- data table  -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script src="https://cdn.datatables.net/2.3.7/js/dataTables.js"></script>
+
+<script>
+  console.log('DataTables library loaded successfully.');
+  let table = new DataTable('#myTable');
+  let table1 = new DataTable('#myTable1');
+  let table2 = new DataTable('#myTable2');
+  let table3 = new DataTable('#tempTable');
+</script>
+<!--  -->
+
+<!-- bs -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-<script src="js/script.js"></script>
 
 </html>

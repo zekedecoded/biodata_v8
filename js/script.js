@@ -43,4 +43,5 @@ document.addEventListener("DOMContentLoaded", function() {
         form.classList.add('was-validated')
       }, false)
     })
-})()
+})();
+

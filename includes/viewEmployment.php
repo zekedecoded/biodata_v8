@@ -1,15 +1,14 @@
 <?php
-include '../Record.php';
-$Record = new Classes\Record($db);
+include '../Employment.php';
 
 if (isset($_GET['id'])) {
-  $row1 = $Record->viewEmployment($_GET['id']);
+  $row1 = $Employment->viewEmployment($_GET['id']);
 } else {
   //redirect
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
-    $Record->deleteEmployment((int) $_POST['delete']);
+    $Employment->deleteEmployment((int) $_POST['delete']);
     header('Location: index.php');
   }
 }
@@ -20,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Biodata CRD</title>
+  <title>Biodata CRUD</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/style.css">
@@ -29,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
 <body>
   <section class="container">
     <!-- Employment forms -->
-    <form method="POST" class="g-3 needs-validation border border-1 m-5 p-5" novalidate>
+    <form method="POST" class="g-3 needs-validation border border-1 p-4 p-md-5" novalidate>
       <a href="../index.php"><img src="../imgs/return.png" class="img-fluid pe-2" width="24" alt="back"></a>
       <div class="container">
         <div class="display-4 mt-3 text-start fw-bold mb-3 d-none d-md-block">Employment Information</div>
@@ -37,8 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
       </div>
       <hr>
       <div class="row">
-        <div class="col col-md-6 h3 fw-bold">Employment Background</div>
-        <div class="col col-md-6">
+        <div class="col-12 col-md-6 h3 fw-bold">Employment Background</div>
+        <div class="col-12 col-md-6">
           <div class="col-12 position-relative mb-2">
             <label for="validationTooltip01" class="form-label">Company Name</label>
             <input type="text" class="form-control" id="validationTooltip01" name="company"
@@ -66,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) { {
       </div>
       </div>
       <div class="row mt-3 g-0 gap-md-5 gap-2 justify-content-center">
-        <div class="col-12 col-md-5 btn btn-outline-primary">Edit Profile</div>
+        <div class="col-12 col-md-5 btn btn-success">Edit Profile</div>
         <!-- <div class="col-12 col-md-5 btn btn-outline-danger">Delete Profile</div> -->
         <form method="POST"><button type="submit" class="col-12 col-md-5 btn btn-outline-danger" name="delete"
             value="<?= $row1['employmentID'] ?>">Delete</button> </form>

@@ -1,9 +1,8 @@
 <?php
-include '../Record.php';
-$Record = new Classes\Record($db);
+include '../Education.php';
 
 if (isset($_GET['id'])) {
-    $row1 = $Record->viewEducation($_GET['id']);
+    $row1 = $Education->viewEducation($_GET['id']);
 } else {
     //redirect
 }
@@ -24,7 +23,7 @@ if (isset($_GET['id'])) {
     <section class="container">
         <!-- Personal forms -->
 
-        <form method="POST" class="g-3 needs-validation border border-1 m-5 p-5" novalidate>
+        <form method="POST" class="g-3 needs-validation border border-1 m-2 p-5" novalidate>
             <a href="../index.php"><img src="../imgs/return.png" class="img-fluid pe-2" width="24" alt="back"></a>
 
             <div class="container">
@@ -33,8 +32,8 @@ if (isset($_GET['id'])) {
             </div>
             <hr>
             <div class="row">
-                <div class="col col-md-6 h3 fw-bold">School Details</div>
-                <div class="col col-md-6">
+                <div class="col-12 col-md-6 h3 fw-bold">School Details</div>
+                <div class="col-12 col-md-6">
                     <div class="col-12 position-relative mb-2">
                         <label for="validationTooltip01" class="form-label">School Name</label>
                         <input type="text" class="form-control" id="validationTooltip01" name="schoolName" disabled
@@ -60,7 +59,7 @@ if (isset($_GET['id'])) {
             </div>
             </div>
             <div class="row mt-3 g-0 gap-md-5 gap-2 justify-content-center">
-                <div class="col-12 col-md-5 btn btn-outline-primary">Edit Profile</div>
+                <div class="col-12 col-md-5 btn btn-success">Edit Profile</div>
                 <div class="col-12 col-md-5 btn btn-outline-danger">Delete Profile</div>
             </div>
         </form>

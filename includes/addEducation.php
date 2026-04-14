@@ -1,7 +1,6 @@
 <?php
-include '../Record.php';
-$Record = new Classes\Record($db);
-$Record->AddEducation();
+include '../Education.php';
+$Education->AddEducation();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,52 +15,45 @@ $Record->AddEducation();
 </head>
 
 <body>
-  <section class="container">
-    <!-- Personal forms -->
-    <form method="POST" class="g-3 needs-validation border border-1 m-5 p-5" novalidate>
+  <section class="container py-5">
+    <form method="POST" class="g-3 needs-validation border border-1 m-2 px-4" novalidate>
       <div class="container">
-        <div class="display-4 mt-3 text-start fw-bold mb-5 d-none d-md-block">Educational Information</div>
-        <div class="display-6 mt-3 text-center fw-bold mb-5 d-md-none d-block">Educational Information</div>
+        <div class="display-4 mt-3 text-start fw-bold mb-2 d-none d-md-block">Educational Information</div>
+        <div class="display-6 mt-3 text-center fw-bold mb-1 d-md-none d-block">Educational Information</div>
       </div>
       <hr>
+
+      <!-- School Details -->
       <div class="row">
-        <div class="col col-md-6 h3 fw-bold">School Details</div>
-        <div class="col col-md-6">
-          <div class="col-12 position-relative mb-2">
+        <div class="col-12 col-md-6 h3 fw-bold">School Details</div>
+        <div class="col-12 col-md-6">
+          <div class="position-relative mb-2">
             <label for="validationTooltip01" class="form-label">School Name</label>
             <input type="text" class="form-control" id="validationTooltip01" name="schoolName" required>
-            <div class="invalid-feedback">
-              Please provide a valid school name.
-            </div>
+            <div class="invalid-feedback">Please provide a valid school name.</div>
           </div>
           <div class="position-relative mb-2">
             <label for="validationTooltip02" class="form-label">Academic Level</label>
-            <input type="text" class="form-control" id="validationTooltip02" required name="acadLevel">
-            <div class="invalid-feedback">
-              Please enter a valid academic level.
-            </div>
+            <input type="text" class="form-control" id="validationTooltip02" name="acadLevel" required>
+            <div class="invalid-feedback">Please enter a valid academic level.</div>
           </div>
           <div class="position-relative mb-2">
             <label for="validationTooltip03" class="form-label">Course</label>
             <input type="text" class="form-control" id="validationTooltip03" name="course_name">
-            <div class="invalid-feedback">
-              Please provide a valid course.
-            </div>
+            <div class="invalid-feedback">Please provide a valid course.</div>
           </div>
-          <div class="col-12 position-relative mb-2">
+          <div class="position-relative mb-2">
             <label for="validationTooltip04" class="form-label">Year Graduated</label>
             <input type="date" class="form-control" id="validationTooltip04" name="yr_grad">
-            <div class="invalid-feedback">
-              Please provide a valid graduated year.
-            </div>
+            <div class="invalid-feedback">Please provide a valid graduated year.</div>
           </div>
         </div>
       </div>
-      </div>
-      </div>
-      <div class="col-12 mt-3 d-flex justify-content-center justify-content-md-end">
-        <button class="btn btn-primary" onclick="alert('Form Submitted');" type="submit" name="AddEducation">Submit
-          form</button>
+      <div class="col-12 mt-3">
+        <div class="row d-flex justify-content-center justify-content-md-between g-0 gap-1">
+          <button class="col col-md-5 btn btn-outline-danger mb-3 mt-2" type="reset">Clear Form</button>
+          <button class="col col-md-5 btn btn-primary mb-3 mt-2" type="submit" name="AddEducation">Submit form</button>
+        </div>
       </div>
     </form>
   </section>
