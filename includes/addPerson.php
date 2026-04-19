@@ -33,12 +33,12 @@ $Person->AddPerson();
           <input type="file" name="pfp">
         </div>
         <div class="col-12 col-md-6">
-          <div class="col-12 position-relative mb-2">
+          <div class="col col-6 position-relative mb-2">
             <label for="validationTooltip01" class="form-label">First Name</label>
             <input type="text" class="form-control" id="validationTooltip01" name="firstname" required>
             <div class="invalid-feedback">Please provide a valid first name.</div>
           </div>
-          <div class="position-relative mb-2">
+          <div class="col col-6 position-relative mb-2">
             <label for="validationTooltip02" class="form-label">Middle Name</label>
             <input type="text" class="form-control" id="validationTooltip02" name="middlename" required>
             <div class="invalid-feedback">Please provide a valid middle name.</div>
@@ -100,11 +100,11 @@ $Person->AddPerson();
             <div class="invalid-feedback">Please provide a valid skills.</div>
           </div>
           <div class="col-12 position-relative mb-2">
-            <label for="validationTooltip13" class="form-label">Father's First Name</label>
-            <input type="text" class="form-control" id="validationTooltip13" name="father_firstName" required>
+            <label for="validationTooltip13" class="form-label">Father's Full Name</label>
+            <input type="text" class="form-control" id="validationTooltip13" name="father_fullName" required>
             <div class="invalid-feedback">Please provide a valid father's name.</div>
           </div>
-          <div class="col-12 position-relative mb-2">
+          <!-- <div class="col-12 position-relative mb-2">
             <label for="validationTooltip14" class="form-label">Father's Middle Name</label>
             <input type="text" class="form-control" id="validationTooltip14" name="father_middleName" required>
             <div class="invalid-feedback">Please provide a valid father's name.</div>
@@ -118,7 +118,7 @@ $Person->AddPerson();
             <label for="validationTooltip16" class="form-label">Father's Suffix</label>
             <input type="text" class="form-control" id="validationTooltip16" name="father_suffix">
             <div class="invalid-feedback">Please provide a valid father's suffix.</div>
-          </div>
+          </div> -->
         </div>
       </div>
 

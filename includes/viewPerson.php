@@ -1,8 +1,8 @@
 <?php
-include '../Person.php';
+include "../Person.php";
 
-if (isset($_GET['id'])) {
-    $row1 = $Person->viewPerson($_GET['id']);
+if (isset($_GET["id"])) {
+    $row1 = $Person->viewPerson($_GET["id"]);
 } else {
     // redirect
 }
@@ -33,7 +33,7 @@ if (isset($_GET['id'])) {
                 <!-- Profile Picture -->
                 <div class="col-12 col-md-4 text-center">
                     <img
-                        src="../profiles/<?= $row1['pfp']; ?>"
+                        src="../profiles/<?= $row1["pfp"] ?>"
                         class="img-fluid rounded-circle object-fit-cover border border-dark border-4"
                         alt="profile"
                         style="width: 200px; height: 200px;">
@@ -52,31 +52,31 @@ if (isset($_GET['id'])) {
                         <div class="col-12 col-md-6">
                             <label for="firstname" class="form-label">First Name</label>
                             <input type="text" class="form-control" id="firstname" name="firstname"
-                                value="<?= strtoupper($row1['firstname']) ?>" disabled>
+                                value="<?= strtoupper($row1["firstname"]) ?>" disabled>
                         </div>
 
                         <div class="col-12 col-md-6">
                             <label for="middlename" class="form-label">Middle Name</label>
                             <input type="text" class="form-control" id="middlename" name="middlename"
-                                value="<?= strtoupper($row1['middlename']) ?>" disabled>
+                                value="<?= strtoupper($row1["middlename"]) ?>" disabled>
                         </div>
 
                         <div class="col-12 col-md-6">
                             <label for="lastname" class="form-label">Last Name</label>
                             <input type="text" class="form-control" id="lastname" name="lastname"
-                                value="<?= strtoupper($row1['lastname']) ?>" disabled>
+                                value="<?= strtoupper($row1["lastname"]) ?>" disabled>
                         </div>
 
                         <div class="col-12 col-md-6">
                             <label for="suffix" class="form-label">Suffix</label>
                             <input type="text" class="form-control" id="suffix" name="suffix"
-                                value="<?= strtoupper($row1['suffix']) ?>" disabled>
+                                value="<?= strtoupper($row1["suffix"]) ?>" disabled>
                         </div>
 
                         <div class="col-12 col-md-6">
                             <label for="dob" class="form-label">Date of Birth</label>
                             <input type="date" class="form-control" id="dob" name="dob"
-                                value="<?= $row1['dob'] ?>" disabled>
+                                value="<?= $row1["dob"] ?>" disabled>
                         </div>
 
                         <div class="col-12 col-md-6">
@@ -84,17 +84,17 @@ if (isset($_GET['id'])) {
                             <div class="d-flex gap-3 mt-1">
                                 <div class="form-check">
                                     <input type="radio" class="form-check-input" id="male" name="gender" value="Male"
-                                        <?= ($row1['gender'] == 'Male') ? 'checked' : '' ?> disabled>
+                                        <?= $row1["gender"] == "Male" ? "checked" : "" ?> disabled>
                                     <label class="form-check-label" for="male">Male</label>
                                 </div>
                                 <div class="form-check">
                                     <input type="radio" class="form-check-input" id="female" name="gender" value="Female"
-                                        <?= ($row1['gender'] == 'Female') ? 'checked' : '' ?> disabled>
+                                        <?= $row1["gender"] == "Female" ? "checked" : "" ?> disabled>
                                     <label class="form-check-label" for="female">Female</label>
                                 </div>
                                 <div class="form-check">
                                     <input type="radio" class="form-check-input" id="other" name="gender" value="Other"
-                                        <?= ($row1['gender'] == 'Other') ? 'checked' : '' ?> disabled>
+                                        <?= $row1["gender"] == "Other" ? "checked" : "" ?> disabled>
                                     <label class="form-check-label" for="other">Other</label>
                                 </div>
                             </div>
@@ -103,31 +103,31 @@ if (isset($_GET['id'])) {
                         <div class="col-12 col-md-6">
                             <label for="religion" class="form-label">Religion</label>
                             <input type="text" class="form-control" id="religion" name="religion"
-                                value="<?= strtoupper($row1['religion']) ?>" disabled>
+                                value="<?= strtoupper($row1["religion"]) ?>" disabled>
                         </div>
 
                         <div class="col-12 col-md-6">
                             <label for="marital_status" class="form-label">Marital Status</label>
                             <input type="text" class="form-control" id="marital_status" name="marital_status"
-                                value="<?= strtoupper($row1['marital_status']) ?>" disabled>
+                                value="<?= strtoupper($row1["marital_status"]) ?>" disabled>
                         </div>
 
                         <div class="col-12">
                             <label for="lang_known" class="form-label">Language Known</label>
                             <input type="text" class="form-control" id="lang_known" name="lang_known"
-                                value="<?= strtoupper($row1['lang_known']) ?>" disabled>
+                                value="<?= strtoupper($row1["lang_known"]) ?>" disabled>
                         </div>
 
                         <div class="col-12">
                             <label for="hobbiesName" class="form-label">Hobbies</label>
                             <input type="text" class="form-control" id="hobbiesName" name="hobbiesName"
-                                value="<?= strtoupper($row1['hobbiesName']) ?>" disabled>
+                                value="<?= strtoupper($row1["hobbiesName"]) ?>" disabled>
                         </div>
 
                         <div class="col-12">
                             <label for="skills" class="form-label">Skills</label>
                             <input type="text" class="form-control" id="skills" name="skills"
-                                value="<?= strtoupper($row1['skills']) ?>" disabled>
+                                value="<?= strtoupper($row1["skills"]) ?>" disabled>
                         </div>
                     </div>
 
@@ -135,28 +135,28 @@ if (isset($_GET['id'])) {
                     <h5 class="fw-bold mt-4 mb-3">Father's Information</h5>
                     <div class="row g-2">
                         <div class="col-12 col-md-6">
-                            <label for="father_firstName" class="form-label">Father's First Name</label>
+                            <label for="father_firstName" class="form-label">Father's Full Name</label>
                             <input type="text" class="form-control" id="father_firstName" name="father_firstName"
-                                value="<?= strtoupper($row1['father_firstName']) ?>" disabled>
+                                value="<?= strtoupper($row1["father_fullName"]) ?>" disabled>
                         </div>
 
-                        <div class="col-12 col-md-6">
+                        <!-- <div class="col-12 col-md-6">
                             <label for="father_middleName" class="form-label">Father's Middle Name</label>
                             <input type="text" class="form-control" id="father_middleName" name="father_middleName"
-                                value="<?= strtoupper($row1['father_middleName']) ?>" disabled>
+                                value="<?= strtoupper($row1["father_middleName"]) ?>" disabled>
                         </div>
 
                         <div class="col-12 col-md-6">
                             <label for="father_lastName" class="form-label">Father's Last Name</label>
                             <input type="text" class="form-control" id="father_lastName" name="father_lastName"
-                                value="<?= strtoupper($row1['father_lastName']) ?>" disabled>
+                                value="<?= strtoupper($row1["father_lastName"]) ?>" disabled>
                         </div>
 
                         <div class="col-12 col-md-6">
                             <label for="father_suffix" class="form-label">Father's Suffix</label>
                             <input type="text" class="form-control" id="father_suffix" name="father_suffix"
-                                value="<?= strtoupper($row1['father_suffix']) ?>" disabled>
-                        </div>
+                                value="<?= strtoupper($row1["father_suffix"]) ?>" disabled>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -174,13 +174,13 @@ if (isset($_GET['id'])) {
                         <div class="col-12 col-md-6">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="email" name="email"
-                                value="<?= $row1['email'] ?>" disabled>
+                                value="<?= $row1["email"] ?>" disabled>
                         </div>
 
                         <div class="col-12 col-md-6">
                             <label for="mobile" class="form-label">Mobile No.</label>
                             <input type="text" class="form-control" id="mobile" name="mobile"
-                                value="<?= strtoupper($row1['mobile']) ?>" disabled>
+                                value="<?= strtoupper($row1["mobile"]) ?>" disabled>
                         </div>
                     </div>
                 </div>
@@ -199,25 +199,25 @@ if (isset($_GET['id'])) {
                         <div class="col-12 col-md-6">
                             <label for="street" class="form-label">Street</label>
                             <input type="text" class="form-control" id="street" name="street"
-                                value="<?= strtoupper($row1['street']) ?>" disabled>
+                                value="<?= strtoupper($row1["street"]) ?>" disabled>
                         </div>
 
                         <div class="col-12 col-md-6">
                             <label for="barangay" class="form-label">Barangay</label>
                             <input type="text" class="form-control" id="barangay" name="barangay"
-                                value="<?= strtoupper($row1['barangay']) ?>" disabled>
+                                value="<?= strtoupper($row1["barangay"]) ?>" disabled>
                         </div>
 
                         <div class="col-12 col-md-6">
                             <label for="city" class="form-label">City</label>
                             <input type="text" class="form-control" id="city" name="city"
-                                value="<?= strtoupper($row1['city']) ?>" disabled>
+                                value="<?= strtoupper($row1["city"]) ?>" disabled>
                         </div>
 
                         <div class="col-12 col-md-6">
                             <label for="province" class="form-label">Province</label>
                             <input type="text" class="form-control" id="province" name="province"
-                                value="<?= strtoupper($row1['province']) ?>" disabled>
+                                value="<?= strtoupper($row1["province"]) ?>" disabled>
                         </div>
                     </div>
                 </div>

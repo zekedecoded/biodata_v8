@@ -22,10 +22,10 @@ class Person
     public string $email;
     public string $gender;
     public string $marital_status;
-    public string $father_lastName;
-    public string $father_firstName;
-    public string $father_middleName;
-    public string $father_suffix;
+    // public string $father_lastName;
+    public string $father_fullName;
+    // public string $father_middleName;
+    // public string $father_suffix;
     public string $religion;
     public string $lang_known;
     public string $hobbiesName;
@@ -59,10 +59,10 @@ class Person
             $this->city = $_POST["city"];
             $this->province = $_POST["province"];
             $this->religion = $_POST["religion"];
-            $this->father_lastName = $_POST["father_lastName"];
-            $this->father_firstName = $_POST["father_firstName"];
-            $this->father_middleName = $_POST["father_middleName"];
-            $this->father_suffix = $_POST["father_suffix"];
+            // $this->father_lastName = $_POST["father_lastName"];
+            $this->father_fullName = $_POST["father_fullName"];
+            // $this->father_middleName = $_POST["father_middleName"];
+            // $this->father_suffix = $_POST["father_suffix"];
             $this->marital_status = $_POST["marital_status"];
             $this->lang_known = $_POST["lang_known"];
             $this->hobbiesName = $_POST["hobbiesName"];
@@ -156,7 +156,7 @@ class Person
                 }
 
                 $stmt = $this->con->prepare(
-                    "INSERT INTO temp_person(lastname,firstname,middlename,suffix,dob,gender,email,mobile,street,barangay,city,province,religion,father_lastName,father_firstName,father_middleName,father_suffix,marital_status,lang_known,hobbiesName,skills,pfp)VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                    "INSERT INTO temp_person(lastname,firstname,middlename,suffix,dob,gender,email,mobile,street,barangay,city,province,religion,father_fullName,marital_status,lang_known,hobbiesName,skills,pfp)VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 );
                 $stmt->execute([
                     $this->lastname,
@@ -172,10 +172,10 @@ class Person
                     $this->city,
                     $this->province,
                     $this->religion,
-                    $this->father_lastName,
-                    $this->father_firstName,
-                    $this->father_middleName,
-                    $this->father_suffix,
+                    // $this->father_lastName,
+                    $this->father_fullName,
+                    // $this->father_middleName,
+                    // $this->father_suffix,
                     $this->marital_status,
                     $this->lang_known,
                     $this->hobbiesName,
@@ -257,7 +257,7 @@ class Person
                     }
 
                     $stmt = $this->con->prepare(
-                        "UPDATE person SET firstname = ?, lastname = ?, middlename = ?, suffix = ?, mobile = ?, email = ?, dob = ?, gender = ?, marital_status = ?, father_lastName = ?, father_firstName = ?, father_middleName = ?, father_suffix = ?, religion = ?, lang_known = ?, hobbiesName = ?, street = ?, barangay = ?, city = ?, province = ?, skills = ?, pfp = ? WHERE personID = ?;",
+                        "UPDATE person SET firstname = ?, lastname = ?, middlename = ?, suffix = ?, mobile = ?, email = ?, dob = ?, gender = ?, marital_status = ?, father_fullName = ?, religion = ?, lang_known = ?, hobbiesName = ?, street = ?, barangay = ?, city = ?, province = ?, skills = ?, pfp = ? WHERE personID = ?;",
                     );
                     $stmt->execute([
                         $this->firstname,
@@ -269,10 +269,10 @@ class Person
                         $this->dob,
                         $this->gender,
                         $this->marital_status,
-                        $this->father_lastName,
-                        $this->father_firstName,
-                        $this->father_middleName,
-                        $this->father_suffix,
+                        $this->father_fullName,
+                        // $this->father_lastName,
+                        // $this->father_middleName,
+                        // $this->father_suffix,
                         $this->religion,
                         $this->lang_known,
                         $this->hobbiesName,

@@ -58,10 +58,21 @@
         ?>
         <?php
         include_once "libraries.php";
-
         include "./includes/table.php";
         ?>
 
+        <?php if (isset($_GET['duplicate']) && isset($_SESSION['duplicate_error'])): ?>
+            <?php
+            $err = $_SESSION['duplicate_error'];
+            $msg = "This record cannot be accepted because the " . $err['field'] . " already exists in the " . $err['source'] . ". ";
+            unset($_SESSION['duplicate_error']);
+            ?>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    alert('<?= addslashes($msg) ?>');
+                });
+            </script>
+        <?php endif; ?>
     </body>
 
     </html>

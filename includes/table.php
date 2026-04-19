@@ -85,10 +85,10 @@
                 <th scope="col">City</th>
                 <th scope="col">Province</th>
                 <th scope="col">Religion</th>
-                <th scope="col">Father's Last Name</th>
-                <th scope="col">Father's First Name</th>
+                <th scope="col">Father's Full Name</th>
+                <!-- <th scope="col">Father's First Name</th>
                 <th scope="col">Father's Middle Name</th>
-                <th scope="col">Father's Suffix</th>
+                <th scope="col">Father's Suffix</th> -->
                 <th scope="col">Marital Status</th>
                 <th scope="col">Languages Known</th>
                 <th scope="col">Hobbies</th>
@@ -144,18 +144,18 @@
                   <td>
                     <?= strtoupper($row1["religion"]) ?>
                   </td>
-                  <td>
+                  <!-- <td>
                     <?= strtoupper($row1["father_lastName"]) ?>
-                  </td>
+                  </td> -->
                   <td>
-                    <?= strtoupper($row1["father_firstName"]) ?>
+                    <?= strtoupper($row1["father_fullName"]) ?>
                   </td>
-                  <td>
+                  <!-- <td>
                     <?= strtoupper($row1["father_middleName"]) ?>
                   </td>
                   <td>
                     <?= strtoupper($row1["father_suffix"]) ?>
-                  </td>
+                  </td> -->
                   <td>
                     <?= strtoupper($row1["marital_status"]) ?>
                   </td>
@@ -207,10 +207,10 @@
                 <th scope="col">City</th>
                 <th scope="col">Province</th>
                 <th scope="col">Religion</th>
-                <th scope="col">Father's Last Name</th>
-                <th scope="col">Father's First Name</th>
+                <th scope="col">Father's Full Name</th>
+                <!-- <th scope="col">Father's First Name</th>
                 <th scope="col">Father's Middle Name</th>
-                <th scope="col">Father's Suffix</th>
+                <th scope="col">Father's Suffix</th> -->
                 <th scope="col">Marital Status</th>
                 <th scope="col">Languages Known</th>
                 <th scope="col">Hobbies</th>
@@ -266,18 +266,18 @@
                   <td>
                     <?= strtoupper($row1["religion"]) ?>
                   </td>
+                  <!-- <td>
+                    <?= strtoupper($row1["father_fullName"]) ?>
+                  </td> -->
                   <td>
-                    <?= strtoupper($row1["father_lastName"]) ?>
+                    <?= strtoupper($row1["father_fullName"]) ?>
                   </td>
-                  <td>
-                    <?= strtoupper($row1["father_firstName"]) ?>
-                  </td>
-                  <td>
+                  <!-- <td>
                     <?= strtoupper($row1["father_middleName"]) ?>
                   </td>
                   <td>
                     <?= strtoupper($row1["father_suffix"]) ?>
-                  </td>
+                  </td> -->
                   <td>
                     <?= strtoupper($row1["marital_status"]) ?>
                   </td>
