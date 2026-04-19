@@ -172,11 +172,9 @@
                     <div class="btn-group btn-group-sm gap-1">
                       <a href="./includes/viewPerson.php?id=<?= $row1["personID"] ?>" class="btn btn-success">View</a>
                       <a href="./includes/editPerson.php?id=<?= $row1["personID"] ?>" class="btn btn-primary">Edit</a>
-                      <!-- <form method="POST"><button type="submit" class="btn btn-danger" value="<?= $row1[
+                      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-record-id="<?= $row1[
                           "personID"
-                      ] ?>"
-                          name="deletePerson">Delete</button>
-                      </form> -->
+                      ] ?>" data-delete-type="deletePerson">Delete</button>
                     </div>
                   </td>
                 </tr>
@@ -296,9 +294,6 @@
                     <div class="btn-group btn-group-sm gap-1">
                       <a href="./includes/viewTemp.php?id=<?= $row1["personID"] ?>" class="btn btn-success">View</a>
                       <a href="./accept.php?personID=<?= $row1["personID"] ?>" class="btn btn-dark">Accept</a>
-                      <!-- <form method="POST"><button type="submit" class="btn btn-danger" 
-                          name="deleteTemp">Decline</button>
-                      </form> -->
                       <a href="./decline.php?personID=<?= $row1["personID"] ?>" class="btn btn-danger">Decline</a>
                     </div>
                   </td>
@@ -310,35 +305,6 @@
           </table>
         </div>
 
-        <!-- modal creation -->
-        <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
-          tabindex="-1">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content text-center">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Delete Record</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body d-flex flex-column align-items-center gap-3">
-                <div class="bin">
-                  <img src="./imgs/bin.png" alt="delete warning" class="img-fluid" width="56px" height="56px">
-                </div>
-                <div class="text">
-                  <h5 class="text-wrap text-md-nowrap">Are you sure you want to delete this record? <br> This action
-                    cannot be
-                    undone.</h5>
-                </div>
-              </div>
-              <!-- the delete button is here -->
-              <div class="modal-footer text-center d-flex justify-content-center gap-1">
-                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <form method="POST"><button type="submit" class="btn btn-danger" name="deletePerson">Delete</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--end of modal-->
         <!--  -->
       </div>
       <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab"><!-- table -->
@@ -382,8 +348,9 @@
                         class="btn btn-success py-0 px-2">View</a>
                       <a href="./includes/editEducation.php?id=<?= $row1["educationID"] ?>"
                         class="btn btn-primary py-0 px-2">Edit</a>
-                      <form method="POST"><button type="submit" class="btn btn-danger py-0 px-2" name="deleteEducation"
-                          value="<?= $row1["educationID"] ?>">Delete</button> </form>
+                      <button type="button" class="btn btn-danger py-0 px-2" data-bs-toggle="modal" data-bs-target="#deleteModal" data-record-id="<?= $row1[
+                          "educationID"
+                      ] ?>" data-delete-type="deleteEducation">Delete</button>
                     </div>
                   </td>
                 </tr>
@@ -436,8 +403,9 @@
                         class="btn btn-success py-0 px-2">View</a>
                       <a href="./includes/editEmployment.php?id=<?= $row1["employmentID"] ?>"
                         class="btn btn-primary py-0 px-2">Edit</a>
-                      <form method="POST"><button type="submit" class="btn btn-danger py-0 px-2" name="deleteEmployment"
-                          value="<?= $row1["employmentID"] ?>">Delete</button> </form>
+                      <button type="button" class="btn btn-danger py-0 px-2" data-bs-toggle="modal" data-bs-target="#deleteModal" data-record-id="<?= $row1[
+                          "employmentID"
+                      ] ?>" data-delete-type="deleteEmployment">Delete</button>
                     </div>
                   </td>
                 </tr>
@@ -452,6 +420,33 @@
     </div>
     </div>
   </section>
+
+  <!-- Universal Delete/Decline Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-center">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title fw-bold" id="deleteModalLabel">Confirm Action</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body d-flex flex-column align-items-center gap-3">
+          <div class="bin">
+            <img src="./imgs/bin.png" alt="delete warning" class="img-fluid" width="56px" height="56px" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'56\' height=\'56\' fill=\'currentColor\' class=\'bi bi-trash\' viewBox=\'0 0 16 16\'%3E%3Cpath d=\'M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z\'/%3E%3Cpath fill-rule=\'evenodd\' d=\'M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z\'/%3E%3C/svg%3E';">
+          </div>
+          <div class="text">
+            <h5 class="text-wrap text-md-nowrap" id="deleteModalText">Are you sure you want to delete this record? <br> This action cannot be undone.</h5>
+          </div>
+        </div>
+        <div class="modal-footer text-center d-flex justify-content-center gap-2 border-0 pt-0 pb-4">
+          <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Cancel</button>
+          <form method="POST" id="deleteModalForm">
+            <button type="submit" class="btn btn-danger px-4" id="deleteModalBtn">Delete</button>
+          </form> 
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 <div class="dropdown d-md-none position-fixed bottom-0 end-0 m-4 dropdown-container z-3">
   <button class="btn btn-primary rounded-circle fabq d-flex align-items-center justify-content-center p-0" type="button"
@@ -477,6 +472,37 @@
   let table3 = new DataTable('#tempTable');
 </script>
 <!--  -->
+
+<!-- Dynamic Modal Script -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const deleteModal = document.getElementById('deleteModal');
+    if (deleteModal) {
+      deleteModal.addEventListener('show.bs.modal', function (event) {
+        // Button that triggered the modal
+        const button = event.relatedTarget;
+        
+        // Extract info from data-* attributes
+        const recordId = button.getAttribute('data-record-id');
+        const deleteType = button.getAttribute('data-delete-type'); // e.g. deletePerson, deleteEducation
+
+        // Update modal content
+        const deleteModalBtn = document.getElementById('deleteModalBtn');
+        const deleteModalText = document.getElementById('deleteModalText');
+        const deleteModalLabel = document.getElementById('deleteModalLabel');
+        
+        deleteModalLabel.textContent = 'Delete Record';
+        deleteModalText.innerHTML = 'Are you sure you want to delete this record? <br> This action cannot be undone.';
+        deleteModalBtn.textContent = 'Delete';
+
+
+        // Set the name and value of the submit button to tell the backend what to delete
+        deleteModalBtn.name = deleteType;
+        deleteModalBtn.value = recordId;
+      });
+    }
+  });
+</script>
 
 <!-- bs -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"

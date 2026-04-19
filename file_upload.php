@@ -22,6 +22,10 @@ class FileUpload
     {
 
         $check = true;
+        if (empty($this->baseFile['tmp_name']) || !file_exists($this->baseFile['tmp_name'])) {
+            array_push($this->response, ['error' => 'No file uploaded or invalid file.']);
+            return false;
+        }
         $attrib = getimagesize($this->baseFile['tmp_name']);
         if (!$attrib) {
             array_push($this->response, ['error' => 'File is not an image']);

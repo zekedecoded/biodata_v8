@@ -1,7 +1,8 @@
 <?php
-include '../Person.php';
+session_start();
+include "../Person.php";
+include "../duplicate_modal.php";
 $Person->AddPerson();
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
