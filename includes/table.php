@@ -20,15 +20,6 @@
 <body>
   <!-- header -->
   <section class="container-fluid row-cols-12 mt-4" s>
-    <div class="container">
-      <div class="container d-flex align-items-center">
-        <img src="./imgs/icon_data.png" class="img-fluid" alt="Icon">
-        <p class="h3 ps-1 fw-bold">Welcome to Biodata <br>CRUD</p>
-        <div class="container d-md-flex justify-content-md-end text-center d-none">
-          <p class="h5"><b><span id="weekday"></span> <br><span id="date"></span> <br><span id="time"></span></b></p>
-        </div>
-      </div>
-    </div>
     <!--  -->
     <div class="container mt-5 mb-4 gap-3">
       <!-- Nav tabs -->
@@ -47,17 +38,22 @@
             aria-selected="false">Employment</button>
         </div>
         <div class="nav d-none d-md-block ms-auto" role="presentation">
-          <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle d-flex align-items-center" type="button"
-              id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="./imgs/plus.png" alt="Add" class="img-fluid" width="32px">
-              Add Information
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="./includes/addPerson.php">Person</a></li>
-              <li><a class="dropdown-item" href="./includes/addEducation.php">Education</a></li>
-              <li><a class="dropdown-item" href="./includes/addEmployment.php">Employment</a></li>
-            </ul>
+          <div class="d-flex gap-2">
+            <a href="./includes/pending.php" class="btn btn-warning shadow-sm text-white d-flex align-items-center">
+              Pending Approval
+            </a>
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle d-flex align-items-center" type="button"
+                id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="./imgs/plus.png" alt="Add" class="img-fluid" width="32px">
+                Add Information
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="./includes/addPerson.php">Person</a></li>
+                <li><a class="dropdown-item" href="./includes/addEducation.php">Education</a></li>
+                <li><a class="dropdown-item" href="./includes/addEmployment.php">Employment</a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -185,127 +181,7 @@
           </table>
         </div>
         <!-- person table -->
-         <br><br><br><br>
-         <div class="container">
-           <h1>TEMPORARY TABLE</h1>
-         </div>
-        <div class="table-responsive border border-2 rounded shadow-sm">
-          <table class="table table-hover custom-table text-center mb-0" id="tempTable">
-            <thead class="text-center">
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Middle Name</th>
-                <th scope="col">Suffix</th>
-                <th scope="col">Date of Birth</th>
-                <th scope="col">Gender</th>
-                <th scope="col">Email</th>
-                <th scope="col">Mobile No.</th>
-                <th scope="col">Street</th>
-                <th scope="col">Barangay</th>
-                <th scope="col">City</th>
-                <th scope="col">Province</th>
-                <th scope="col">Religion</th>
-                <th scope="col">Father's Full Name</th>
-                <!-- <th scope="col">Father's First Name</th>
-                <th scope="col">Father's Middle Name</th>
-                <th scope="col">Father's Suffix</th> -->
-                <th scope="col">Marital Status</th>
-                <th scope="col">Languages Known</th>
-                <th scope="col">Hobbies</th>
-                <th scope="col">Skills</th>
-                <th scope="col" class="action-sticky">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              $number = 0;
-              foreach ($data3 as $row1) {
-                  $number++; ?>
-                <tr>
-                  <td>
-                    <?= $number ?>
-                  </td>
-                  <td class="fw-bold">
-                    <?= strtoupper($row1["lastname"]) ?>
-                  </td>
-                  <td>
-                    <?= strtoupper($row1["firstname"]) ?>
-                  </td>
-                  <td>
-                    <?= strtoupper($row1["middlename"]) ?>
-                  </td>
-                  <td>
-                    <?= strtoupper($row1["suffix"]) ?>
-                  </td>
-                  <td>
-                    <?= strtoupper($row1["dob"]) ?>
-                  </td>
-                  <td>
-                    <?= strtoupper($row1["gender"]) ?>
-                  </td>
-                  <td class="text-lowercase text-primary">
-                    <?= strtoupper($row1["email"]) ?>
-                  </td>
-                  <td>
-                    <?= strtoupper($row1["mobile"]) ?>
-                  </td>
-                  <td>
-                    <?= strtoupper($row1["street"]) ?>
-                  </td>
-                  <td>
-                    <?= strtoupper($row1["barangay"]) ?>
-                  </td>
-                  <td>
-                    <?= strtoupper($row1["city"]) ?>
-                  </td>
-                  <td>
-                    <?= strtoupper($row1["province"]) ?>
-                  </td>
-                  <td>
-                    <?= strtoupper($row1["religion"]) ?>
-                  </td>
-                  <!-- <td>
-                    <?= strtoupper($row1["father_fullName"]) ?>
-                  </td> -->
-                  <td>
-                    <?= strtoupper($row1["father_fullName"]) ?>
-                  </td>
-                  <!-- <td>
-                    <?= strtoupper($row1["father_middleName"]) ?>
-                  </td>
-                  <td>
-                    <?= strtoupper($row1["father_suffix"]) ?>
-                  </td> -->
-                  <td>
-                    <?= strtoupper($row1["marital_status"]) ?>
-                  </td>
-                  <td>
-                    <?= strtoupper($row1["lang_known"]) ?>
-                  </td>
-                  <td>
-                    <?= strtoupper($row1["hobbiesName"]) ?>
-                  </td>
-                  <td>
-                    <?= strtoupper($row1["skills"]) ?>
-                  </td>
-                  <td class="action-sticky">
-                    <div class="btn-group btn-group-sm gap-1">
-                      <a href="./includes/viewTemp.php?id=<?= $row1["personID"] ?>" class="btn btn-success">View</a>
-                      <a href="./accept.php?personID=<?= $row1["personID"] ?>" class="btn btn-dark">Accept</a>
-                      <a href="./decline.php?personID=<?= $row1["personID"] ?>" class="btn btn-danger">Decline</a>
-                    </div>
-                  </td>
-                </tr>
-              <?php
-              }
-              ?>
-            </tbody>
-          </table>
-        </div>
 
-        <!--  -->
       </div>
       <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab"><!-- table -->
         <!-- education table -->
@@ -469,7 +345,6 @@
   let table = new DataTable('#myTable');
   let table1 = new DataTable('#myTable1');
   let table2 = new DataTable('#myTable2');
-  let table3 = new DataTable('#tempTable');
 </script>
 <!--  -->
 

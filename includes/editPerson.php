@@ -121,8 +121,14 @@ if (isset($_POST["editPerson"])) {
 
           <div class="position-relative mb-2">
             <label for="validationTooltip17" class="form-label">Marital Status</label>
-            <input type="text" class="form-control" id="validationTooltip17" required name="marital_status"
-              value="<?= strtoupper($row1["marital_status"]) ?>">
+            <select class="form-select" id="validationTooltip17" required name="marital_status">
+              <option value="" disabled>Select marital status</option>
+              <option value="Single" <?= strtolower($row1["marital_status"]) == "single" ? "selected" : "" ?>>Single</option>
+              <option value="Married" <?= strtolower($row1["marital_status"]) == "married" ? "selected" : "" ?>>Married</option>
+              <option value="Widowed" <?= strtolower($row1["marital_status"]) == "widowed" ? "selected" : "" ?>>Widowed</option>
+              <option value="Separated" <?= strtolower($row1["marital_status"]) == "separated" ? "selected" : "" ?>>Separated</option>
+              <option value="Divorced" <?= strtolower($row1["marital_status"]) == "divorced" ? "selected" : "" ?>>Divorced</option>
+            </select>
             <div class="invalid-feedback">Please provide a valid marital status.</div>
           </div>
 
@@ -150,7 +156,7 @@ if (isset($_POST["editPerson"])) {
           <!-- Father's Details -->
           <div class="col-12 position-relative">
             <label for="validationTooltip13" class="form-label">Father's Full Name</label>
-            <input type="text" class="form-control" id="validationTooltip13" required name="father_firstName"
+            <input type="text" class="form-control" id="validationTooltip13" required name="father_fullName"
               value="<?= strtoupper($row1["father_fullName"]) ?>">
             <div class="invalid-feedback">Please provide a valid father's name.</div>
           </div>

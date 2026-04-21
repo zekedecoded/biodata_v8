@@ -216,78 +216,80 @@ class Person
     {
         $this->getPostPerson();
         if (!empty($_POST)) {
+            // Duplicate check
+            $chkEdit = $this->con->prepare(
+                "SELECT personID, firstname, lastname, email, mobile
+                 FROM person
+                 WHERE (email = ? OR mobile = ?)
+                 AND personID != ?
+                 LIMIT 1",
+            );
+            $chkEdit->execute([$this->email, $this->mobile, $personID]);
+
+            if ($chkEdit->rowCount() > 0) {
+                $match = $chkEdit->fetch(\PDO::FETCH_ASSOC);
+                $emailMatch = strtolower($match["email"]) === strtolower($this->email);
+                $mobileMatch = (string) $match["mobile"] === (string) $this->mobile;
+
+                if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
+                }
+                $_SESSION["duplicate_error"] = [
+                    "field" =>
+                        $emailMatch && $mobileMatch
+                        ? "email address and mobile number"
+                        : ($emailMatch
+                            ? "email address"
+                            : "mobile number"),
+                    "source" => "approved records",
+                    "match" => $match,
+                ];
+                header("Location: ../includes/editPerson.php?id=$personID&duplicate=1");
+                exit();
+            }
+
+            // Handle optional profile picture upload
             if ($_FILES["pfp"]["name"]) {
                 $uploads = new FileUpload($_FILES["pfp"], "../profiles/");
                 $pfp = $uploads->fileName;
-                if ($uploads->upload()) {
-                    // ============================================================
-                    // [ADDED] Duplicate guard for editPerson().
-                    // Excludes current personID so a person's own record doesn't
-                    // trigger a false positive. Uses same detailed return format.
-                    // ============================================================
-                    $chkEdit = $this->con->prepare(
-                        "SELECT personID, firstname, lastname, email, mobile
-                         FROM person
-                         WHERE (email = ? OR mobile = ?)
-                         AND personID != ?
-                         LIMIT 1",
-                    );
-                    $chkEdit->execute([$this->email, $this->mobile, $personID]);
-
-                    if ($chkEdit->rowCount() > 0) {
-                        $match = $chkEdit->fetch(\PDO::FETCH_ASSOC);
-                        $emailMatch = strtolower($match["email"]) === strtolower($this->email);
-                        $mobileMatch = (string) $match["mobile"] === (string) $this->mobile;
-
-                        if (session_status() === PHP_SESSION_NONE) {
-                            session_start();
-                        }
-                        $_SESSION["duplicate_error"] = [
-                            "field" =>
-                                $emailMatch && $mobileMatch
-                                    ? "email address and mobile number"
-                                    : ($emailMatch
-                                        ? "email address"
-                                        : "mobile number"),
-                            "source" => "approved records",
-                            "match" => $match,
-                        ];
-                        header("Location: ../includes/editPerson.php?id=$personID&duplicate=1");
-                        exit();
-                    }
-
-                    $stmt = $this->con->prepare(
-                        "UPDATE person SET firstname = ?, lastname = ?, middlename = ?, suffix = ?, mobile = ?, email = ?, dob = ?, gender = ?, marital_status = ?, father_fullName = ?, religion = ?, lang_known = ?, hobbiesName = ?, street = ?, barangay = ?, city = ?, province = ?, skills = ?, pfp = ? WHERE personID = ?;",
-                    );
-                    $stmt->execute([
-                        $this->firstname,
-                        $this->lastname,
-                        $this->middlename,
-                        $this->suffix,
-                        $this->mobile,
-                        $this->email,
-                        $this->dob,
-                        $this->gender,
-                        $this->marital_status,
-                        $this->father_fullName,
-                        // $this->father_lastName,
-                        // $this->father_middleName,
-                        // $this->father_suffix,
-                        $this->religion,
-                        $this->lang_known,
-                        $this->hobbiesName,
-                        $this->street,
-                        $this->barangay,
-                        $this->city,
-                        $this->province,
-                        $this->skills,
-                        $pfp,
-                        $personID,
-                    ]);
-                    $this->responseSQL($stmt);
-                    header("Location: ../includes/editPerson.php?id=$personID");
-                }
+                $uploads->upload();
+            } else {
+                // Keep existing pfp
+                $existing = $this->con->prepare("SELECT pfp FROM person WHERE personID = ?");
+                $existing->execute([$personID]);
+                $pfp = $existing->fetchColumn();
             }
+
+            $stmt = $this->con->prepare(
+                "UPDATE person SET firstname = ?, lastname = ?, middlename = ?, suffix = ?, mobile = ?, email = ?, dob = ?, gender = ?, marital_status = ?, father_fullName = ?, religion = ?, lang_known = ?, hobbiesName = ?, street = ?, barangay = ?, city = ?, province = ?, skills = ?, pfp = ? WHERE personID = ?;",
+            );
+            $stmt->execute([
+                $this->firstname,
+                $this->lastname,
+                $this->middlename,
+                $this->suffix,
+                $this->mobile,
+                $this->email,
+                $this->dob,
+                $this->gender,
+                $this->marital_status,
+                $this->father_fullName,
+                // $this->father_lastName,
+                // $this->father_middleName,
+                // $this->father_suffix,
+                $this->religion,
+                $this->lang_known,
+                $this->hobbiesName,
+                $this->street,
+                $this->barangay,
+                $this->city,
+                $this->province,
+                $this->skills,
+                $pfp,
+                $personID,
+            ]);
+            $this->responseSQL($stmt);
+            header("Location: ../includes/editPerson.php?id=$personID");
         }
     }
 

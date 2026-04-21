@@ -69,7 +69,7 @@ $Person->AddPerson();
                 <label class="form-check-label" for="female">Female</label>
               </div>
               <div class="col-6">
-                <input type="radio" class="form-check-input" id="other" name="gender" value="Other" required>
+                <input type="radio" class="form-check-input" id="other" name="gender" value="" required>
                 <label class="form-check-label" for="other">Other</label>
               </div>
             </div>
@@ -81,7 +81,14 @@ $Person->AddPerson();
           </div>
           <div class="position-relative mb-2">
             <label for="validationTooltip17" class="form-label">Marital Status</label>
-            <input type="text" class="form-control" id="validationTooltip17" name="marital_status" required>
+            <select class="form-select" id="validationTooltip17" name="marital_status" required>
+              <option value="" disabled selected>Select marital status</option>
+              <option value="Single">Single</option>
+              <option value="Married">Married</option>
+              <option value="Widowed">Widowed</option>
+              <option value="Separated">Separated</option>
+              <option value="Divorced">Divorced</option>
+            </select>
             <div class="invalid-feedback">Please provide a valid marital status.</div>
           </div>
           <div class="position-relative mb-2">
